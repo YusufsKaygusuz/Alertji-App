@@ -10,11 +10,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String? errorMessage = '';
-  bool isLogin = true;
+  String? errorMessage = ''; // Hata mesajını tutacak değişken
+  bool isLogin = true; // Giriş durumunu belirleyen değişken
 
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController _controllerEmail = TextEditingController(); // E-posta giriş alanı kontrolcüsü
+  final TextEditingController _controllerPassword = TextEditingController(); // Şifre giriş alanı kontrolcüsü
 
   Future<void> signInWithEmailAndPassword() async {
     try {
@@ -22,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
           email: _controllerEmail.text, password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
       setState(() {
-        errorMessage = e.message;
+        errorMessage = e.message; // Hata durumunda hatayı göstermek için errorMessage değişkenini günceller
       });
     }
   }
@@ -34,19 +34,19 @@ class _LoginPageState extends State<LoginPage> {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        labelText: title,
+        labelText: title, // Alan etiketine başlık değerini atar
       ),
     );
   }
 
   Widget _errorMesage() {
-    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage');
+    return Text(errorMessage == '' ? '' : 'Humm ? $errorMessage'); // Hata mesajını görüntüler veya boş bir metin döndürür
   }
 
   Widget _submitButton() {
     return ElevatedButton(
-        onPressed: signInWithEmailAndPassword,
-        child: Text( 'Login'));
+        onPressed: signInWithEmailAndPassword, // Butona tıklandığında signInWithEmailAndPassword fonksiyonunu çalıştırır
+        child: Text( 'Login')); // Buton metni
   }
 
   @override
@@ -60,10 +60,10 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              _entryField('email', _controllerEmail),
-              _entryField('password', _controllerPassword),
-              _errorMesage(),
-              _submitButton(),
+              _entryField('email', _controllerEmail), // E-posta giriş alanını oluşturur
+              _entryField('password', _controllerPassword), // Şifre giriş alanını oluşturur
+              _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür
+              _submitButton(), // Giriş butonunu oluşturur
             ]),
       ),
     );
