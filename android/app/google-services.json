@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "756590021077",
+    "project_id": "alertjiapp-59846",
+    "storage_bucket": "alertjiapp-59846.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:756590021077:android:5d6354b64b3d2947a4d55c",
+        "android_client_info": {
+          "package_name": "com.example.alertji_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "756590021077-c5qk7jpnignstkgvk9q3ifocp50fjbkm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGlzA6G-n-LDKEdrfhad-JGnpMkXlSXTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "756590021077-c5qk7jpnignstkgvk9q3ifocp50fjbkm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
