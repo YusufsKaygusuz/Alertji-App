@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import '../../onboard/view/onboarding_view.dart';
+import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
 import '../service/auth_google.dart';
@@ -187,6 +189,11 @@ class _LoginPageState extends State<LoginPage> {
             child: _button(
                 onTap: () {
                   signInWithEmailAndPassword();
+                  if(FirebaseAuth.instance.currentUser != null)
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                  }
+
                 },
                 text: 'Giriş Yap'),
           ),
@@ -197,8 +204,8 @@ class _LoginPageState extends State<LoginPage> {
           const SizedBox(height: 20),
           SignInButton(Buttons.Google, text: "Google ile giriş yap",
               onPressed: () {
-            AuthGoogle().signInWithGoogle();
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OnboardingView()));
+            AuthGoogle().signInWithGoogle();          
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));          
           })
         ]),
       ),

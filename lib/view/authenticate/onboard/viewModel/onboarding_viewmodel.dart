@@ -16,7 +16,7 @@ class OnboardingViewModel extends ChangeNotifier {
   final List<PageViewModel> _pages = [
     PageViewModel(
       title: "",
-      bodyWidget: const Column(
+      bodyWidget:  Column(
         children: [
           Image(
             image: AssetImage('assets/images/onboard1.jpg'),
@@ -36,7 +36,7 @@ class OnboardingViewModel extends ChangeNotifier {
     ),
     PageViewModel(
       title: "",
-      bodyWidget: const Column(
+      bodyWidget: Column(
         children: [
           Image(
             image: AssetImage('assets/images/onboard2.jpg'),
@@ -56,7 +56,7 @@ class OnboardingViewModel extends ChangeNotifier {
     ),
     PageViewModel(
       title: "",
-      bodyWidget: const Column(
+      bodyWidget:  Column(
         children: [
           Image(
             image: AssetImage('assets/images/onboard3.jpg'),

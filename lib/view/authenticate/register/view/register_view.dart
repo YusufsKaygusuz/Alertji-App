@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../onboard/view/onboarding_view.dart';
+import '../../profie/view/profile_view.dart';
 import '../service/auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -12,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool seePassword = false;
   String? errorMessage = ''; // Hata mesajını tutacak değişken
-  bool isLogin = true; // Giriş durumunu belirleyen değişken
+  bool isLogin = false; // Giriş durumunu belirleyen değişken 
 
   final TextEditingController _controllerEmail =
       TextEditingController(); // E-posta giriş alanı kontrolcüsü
@@ -28,6 +30,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(
+        name:_controllerName.text,
           email: _controllerEmail.text, password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
       setState(() {
@@ -155,19 +158,21 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               _textFieldWidget(_controllerName, "İsim", false,
                   icon: Icons.person),
-              _textFieldWidget(_controllerSurname, "Soyisim", false,
-                  icon: Icons.person),
               _textFieldWidget(_controllerEmail, "E-mail", false,
                   icon: Icons.mail),
               _textFieldWidget(_controllerPassword, "Şifre", true,
                   icon: Icons.lock),
               _textFieldWidget(_controllerCheckPassword, "Şifre Tekrarı", true,
                   icon: Icons.lock),
-              _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür
+              _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür             
               _button(
                   onTap: () {
                     createUserWithEmailAndPassword();
-                  },
+                    if(FirebaseAuth.instance.currentUser != null)
+                  {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                  }            
+              },
                   text: "Kayıt Ol"),
             ]),
       ),
