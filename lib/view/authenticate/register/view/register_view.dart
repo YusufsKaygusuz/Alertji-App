@@ -174,6 +174,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     createUserWithEmailAndPassword();
                     if(FirebaseAuth.instance.currentUser != null)
                   {
+                    _controllerCheckPassword.clear();
+                    _controllerPassword.clear();
+                    _controllerEmail.clear();
+                    _controllerName.clear();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
                   }            
               },

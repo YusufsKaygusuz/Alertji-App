@@ -191,6 +191,8 @@ class _LoginPageState extends State<LoginPage> {
                   signInWithEmailAndPassword();
                   if(FirebaseAuth.instance.currentUser != null)
                   {
+                    _controllerEmail.clear();
+                    _controllerPassword.clear();
                     Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
                   }
 
