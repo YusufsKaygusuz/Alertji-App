@@ -1,6 +1,6 @@
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
-import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
+//import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

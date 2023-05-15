@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../onboard/view/onboarding_view.dart';
+//import '../../onboard/view/onboarding_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../service/auth.dart';
 
@@ -22,8 +22,12 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController(); // Şifre giriş alanı kontrolcüsü
   final TextEditingController _controllerName =
       TextEditingController(); // İsim giriş alanı kontrolcüsü
+
+  /* 
   final TextEditingController _controllerSurname =
       TextEditingController(); // Soyisim giriş alanı kontrolcüsü
+  */
+
   final TextEditingController _controllerCheckPassword =
       TextEditingController(); // Şifre tekrarı alanı kontrolcüsü
 
@@ -170,7 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     createUserWithEmailAndPassword();
                     if(FirebaseAuth.instance.currentUser != null)
                   {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
                   }            
               },
                   text: "Kayıt Ol"),

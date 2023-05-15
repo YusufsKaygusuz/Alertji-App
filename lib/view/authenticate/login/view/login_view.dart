@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import '../../onboard/view/onboarding_view.dart';
+// import '../../onboard/view/onboarding_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     seePassword
                         ? Icons.remove_red_eye
                         : Icons.remove_red_eye_outlined,
-                    color: Colors.greenAccent.shade400,
+                    color: const Color.fromARGB(255, 12, 109, 62),
                   ),
                 )
               : null,
@@ -133,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
           child: const Text(
             "Kayıt ol",
             style: TextStyle(
-                color: Color(0xFF24cc40),
+                color: Color.fromARGB(255, 204, 204, 36),
                 fontWeight: FontWeight.bold,
                 fontSize: 14),
           ),
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                   signInWithEmailAndPassword();
                   if(FirebaseAuth.instance.currentUser != null)
                   {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
                   }
 
                 },
@@ -205,7 +205,7 @@ class _LoginPageState extends State<LoginPage> {
           SignInButton(Buttons.Google, text: "Google ile giriş yap",
               onPressed: () {
             AuthGoogle().signInWithGoogle();          
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => ProfilePage()));          
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
           })
         ]),
       ),

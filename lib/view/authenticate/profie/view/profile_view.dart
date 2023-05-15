@@ -25,9 +25,9 @@ class _ProfilePageState extends State<ProfilePage> {
             ElevatedButton(
               onPressed: (){
                 Auth().signOut();
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const LoginPage())); // const eklendi.
               },
-               child: Text("Logout"))
+               child: const Text("Logout"))
           ],
         ),
       ),

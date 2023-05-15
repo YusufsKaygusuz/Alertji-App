@@ -1,12 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
-import '../../profie/view/profile_view.dart';
+// import 'package:flutter/material.dart';
 
 class Auth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final FirebaseFirestore _fireStore =FirebaseFirestore.instance;
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance; // _fireStore olarak kullanılabilir !!!
 
   // Mevcut kullanıcıyı döndüren getter
   User? get currentUser => _firebaseAuth.currentUser;
