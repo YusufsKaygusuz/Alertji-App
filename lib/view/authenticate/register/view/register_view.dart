@@ -14,7 +14,7 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   bool seePassword = false;
   String? errorMessage = ''; // Hata mesajını tutacak değişken
-  bool isLogin = false; // Giriş durumunu belirleyen değişken 
+  bool isLogin = false; // Giriş durumunu belirleyen değişken
 
   final TextEditingController _controllerEmail =
       TextEditingController(); // E-posta giriş alanı kontrolcüsü
@@ -22,7 +22,6 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController(); // Şifre giriş alanı kontrolcüsü
   final TextEditingController _controllerName =
       TextEditingController(); // İsim giriş alanı kontrolcüsü
-
   /* 
   final TextEditingController _controllerSurname =
       TextEditingController(); // Soyisim giriş alanı kontrolcüsü
@@ -34,8 +33,9 @@ class _RegisterPageState extends State<RegisterPage> {
   Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(
-        name:_controllerName.text,
-          email: _controllerEmail.text, password: _controllerPassword.text);
+          name: _controllerName.text,
+          email: _controllerEmail.text,
+          password: _controllerPassword.text);
     } on FirebaseAuthException catch (e) {
       setState(() {
         errorMessage = e
@@ -168,19 +168,63 @@ class _RegisterPageState extends State<RegisterPage> {
                   icon: Icons.lock),
               _textFieldWidget(_controllerCheckPassword, "Şifre Tekrarı", true,
                   icon: Icons.lock),
-              _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür             
+              _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür
               _button(
                   onTap: () {
-                    createUserWithEmailAndPassword();
-                    if(FirebaseAuth.instance.currentUser != null)
-                  {
-                    _controllerCheckPassword.clear();
-                    _controllerPassword.clear();
-                    _controllerEmail.clear();
-                    _controllerName.clear();
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ProfilePage())); // const eklendi.
-                  }            
-              },
+                    if (_controllerName.text.isEmpty) {
+                      AlertDialog alertName = AlertDialog(
+                        title: const Text("Hata"),
+                        content: const Text("İsim alanı boş bırakılamaz"),
+                        actions: [
+                          TextButton(
+                            child: const Text("Tamam"),
+                            onPressed: () {
+                              Navigator.pop(context); // AlertDialog'u kapat
+                            },
+                          ),
+                        ],
+                      );
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return alertName;
+                          });
+                    } else {
+                      if (Auth().validatePassword(_controllerPassword.text,
+                              _controllerCheckPassword.text) ==
+                          true) {
+                        createUserWithEmailAndPassword();
+                        if (FirebaseAuth.instance.currentUser != null) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const ProfilePage())); // const eklendi.
+                          _controllerCheckPassword.clear();
+                          _controllerPassword.clear();
+                          _controllerEmail.clear();
+                          _controllerName.clear();
+                        }
+                      } else {
+                        AlertDialog alertPassword = AlertDialog(
+                          title: const Text("Hata"),
+                          content: const Text(
+                              "Girdiğiniz şifreler uyuşmuyor veya şifre alanı boş bırakılamaz"),
+                          actions: [
+                            TextButton(
+                              child: const Text("Tamam"),
+                              onPressed: () {
+                                Navigator.pop(context); // AlertDialog'u kapat
+                              },
+                            ),
+                          ],
+                        );
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return alertPassword;
+                            });
+                      }
+                    }
+                  },
                   text: "Kayıt Ol"),
             ]),
       ),
