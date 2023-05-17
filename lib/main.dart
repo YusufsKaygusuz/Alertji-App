@@ -1,6 +1,5 @@
-import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
-import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
+import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,7 +22,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const RegisterPage(),
+        home: const NavigationView(),
       ),
     );
   }
