@@ -2,6 +2,7 @@ import 'package:alertji_app/product/model/category_model.dart';
 import 'package:alertji_app/product/widget/category_card.dart';
 import 'package:alertji_app/product/widget/custom_appbar.dart';
 import 'package:alertji_app/view/home/homepage/viewmodel/homepage_viewmodel.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePageView extends StatefulWidget {
@@ -13,7 +14,7 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends HomePageViewModel {
   late Category selectedCategory;
-
+  String userName = FirebaseAuth.instance.currentUser!.displayName ?? 'name';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +23,7 @@ class _HomePageViewState extends HomePageViewModel {
           CustomAppBar(
             icon: Icons.notifications,
             onPressed: () {},
-            text: "Hello\nGood Morning!!",
+            text: 'Welcome, ' + userName,
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

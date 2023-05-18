@@ -1,3 +1,4 @@
+import 'package:alertji_app/view/home/profile/viewmodel/body.dart';
 import 'package:flutter/material.dart';
 
 class ProfileView extends StatefulWidget {
@@ -10,11 +11,12 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.amber,
-      body: Center(
-        child: Text("ProfileView"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Hesabım"),
+        backgroundColor: Colors.green,
       ),
+      body: const Body(),
     );
   }
 }

@@ -1,12 +1,20 @@
+//import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../login/view/login_view.dart';
 
 class OnboardingViewModel extends ChangeNotifier {
   final GlobalKey<IntroductionScreenState> introductionScreenKey =
       GlobalKey<IntroductionScreenState>();
 
-  void onFinishButtonPressed(BuildContext context) {
-    // Navigator.of(context).pushReplacementNamed('');
+  Future<void> onFinishButtonPressed(BuildContext context) async {
+    // int isViewed = 1;
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('onBoard', isViewed);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
 
   void onSkipButtonPressed(BuildContext context) {

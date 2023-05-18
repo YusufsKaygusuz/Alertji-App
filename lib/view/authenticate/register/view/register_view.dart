@@ -1,7 +1,9 @@
+import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../../onboard/view/onboarding_view.dart';
-import '../../profie/view/profile_view.dart';
+// import '../../../home/homepage/view/homepage_view.dart';
+// import '../../profie/view/profile_view.dart';
 import '../service/auth.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -198,9 +200,15 @@ class _RegisterPageState extends State<RegisterPage> {
                             true) {
                           createUserWithEmailAndPassword();
                           if (FirebaseAuth.instance.currentUser != null) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const ProfilePage())); // const eklendi.
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         const NavigationView())); // const eklendi.
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const NavigationView()),
+                                (route) => false);
                             _controllerCheckPassword.clear();
                             _controllerPassword.clear();
                             _controllerEmail.clear();

@@ -4,14 +4,14 @@ import '../../login/view/login_view.dart';
 import '../service/auth.dart';
 
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class ProfilePageTemp extends StatefulWidget {
+  const ProfilePageTemp({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<ProfilePageTemp> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends State<ProfilePageTemp> {
 
   @override
   Widget build(BuildContext context) {
