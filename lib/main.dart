@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-int? isViewed;
+int? initScreen;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   SharedPreferences prefs = await SharedPreferences.getInstance();
-  isViewed = prefs.getInt('onBoard');
+  //isViewed = prefs.getInt('onBoard');
+  initScreen = await prefs.getInt("initScreen");
+  await prefs.setInt('onBoard', 1);
   runApp(const MyApp());
 }
 
@@ -33,7 +35,14 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: isViewed != 0 ? OnboardingView() : LoginPage(),
+        initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
+        routes: {
+          '/': (context) => LoginPage(
+              //title: "demo",
+              ),
+          "first": (context) => OnboardingView(),
+        },
+        //home: isViewed != 0 ? OnboardingView() : LoginPage(),
       ),
     );
   }

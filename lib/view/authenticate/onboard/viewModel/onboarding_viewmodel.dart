@@ -10,9 +10,9 @@ class OnboardingViewModel extends ChangeNotifier {
       GlobalKey<IntroductionScreenState>();
 
   Future<void> onFinishButtonPressed(BuildContext context) async {
-    int isViewed = 1;
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt('onBoard', isViewed);
+    // int isViewed = 1;
+    // SharedPreferences prefs = await SharedPreferences.getInstance();
+    // await prefs.setInt('onBoard', isViewed);
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => const LoginPage()));
   }
