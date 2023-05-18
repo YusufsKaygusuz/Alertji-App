@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../authenticate/login/view/login_view.dart';
+import '../service/auth.dart';
+
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
 
@@ -10,11 +13,20 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Colors.amber,
       body: Center(
-        child: Text("ProfileView"),
-      ),
+          child: Column(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Auth().signOut();
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const LoginPage()));
+              },
+              child: Text("Logout")),
+        ],
+      )),
     );
   }
 }

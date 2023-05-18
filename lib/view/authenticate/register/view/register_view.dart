@@ -1,6 +1,8 @@
+import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../../onboard/view/onboarding_view.dart';
+import '../../../home/homepage/view/homepage_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../service/auth.dart';
 
@@ -200,7 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           if (FirebaseAuth.instance.currentUser != null) {
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    const ProfilePage())); // const eklendi.
+                                    const NavigationView())); // const eklendi.
                             _controllerCheckPassword.clear();
                             _controllerPassword.clear();
                             _controllerEmail.clear();

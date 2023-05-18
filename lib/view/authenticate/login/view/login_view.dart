@@ -1,7 +1,9 @@
+import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 // import '../../onboard/view/onboarding_view.dart';
+import '../../../home/homepage/view/homepage_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
@@ -212,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                       _controllerPassword.clear();
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
-                              const ProfilePage())); // const eklendi.
+                              const NavigationView())); // const eklendi.
                     }
                   },
                   text: 'Giriş Yap'),
@@ -226,7 +228,8 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
               AuthGoogle().signInWithGoogle();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ProfilePage())); // const eklendi.
+                  builder: (context) =>
+                      const ProfilePageTemp())); // const eklendi.
             })
           ]),
         ),
