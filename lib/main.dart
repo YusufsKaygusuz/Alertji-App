@@ -3,6 +3,7 @@ import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart'
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
 // import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
+import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           "first": (context) => const OnboardingView(),
         },
         //home: FirebaseAuth.instance.currentUser != null ? NavigationView() : LoginPage(),
+        home: const NavigationView(),
       ),
     );
   }

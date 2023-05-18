@@ -1,3 +1,4 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/view/home/homepage/view/sub_category_view.dart';
 import 'package:flutter/material.dart';
 import 'package:alertji_app/product/model/category_model.dart';
@@ -20,7 +21,7 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: Colors.white,
+            color: ColorConst.backgroundColor,
             borderRadius: BorderRadius.circular(20),
             boxShadow: [
               BoxShadow(

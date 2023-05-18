@@ -1,58 +1,61 @@
-import 'package:alertji_app/view/home/navigationpage/viewmodel/navigation_viewmodel.dart';
+import 'package:alertji_app/product/model/category_model.dart';
+import 'package:alertji_app/product/widget/category_card.dart';
+import 'package:alertji_app/product/widget/custom_appbar.dart';
+import 'package:alertji_app/view/home/homepage/viewmodel/homepage_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 
-class NavigationView extends StatefulWidget {
-  const NavigationView({super.key});
+class HomePageView extends StatefulWidget {
+  const HomePageView({Key? key}) : super(key: key);
 
   @override
-  State<NavigationView> createState() => _NavigationViewState();
+  State<HomePageView> createState() => _HomePageViewState();
 }
 
-class _NavigationViewState extends NavigationViewModel {
-  int _selectedIndex = 0;
+class _HomePageViewState extends HomePageViewModel {
+  late Category selectedCategory;
+
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-        bottomNavigationBar: MoltenBottomNavigationBar(
-          domeCircleColor: const Color.fromARGB(255, 65, 200, 146),
-          barColor: const Color.fromARGB(255, 71, 229, 166),
-          borderRaduis: const BorderRadius.only(
-            topLeft: Radius.circular(0),
-            topRight: Radius.circular(0),
+    return Scaffold(
+      body: Column(
+        children: [
+          CustomAppBar(
+            icon: Icons.notifications,
+            onPressed: () {},
+            text: "Hello\nGood Morning!!",
           ),
-          selectedIndex: _selectedIndex,
-          onTabChange: (clickedIndex) {
-            setState(() {
-              _selectedIndex = clickedIndex;
-            });
-          },
-          tabs: [
-            MoltenTab(
-              icon: const Icon(
-                Icons.home,
-                color: Colors.white,
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Explore Categories",
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
             ),
-            MoltenTab(
-                icon: const Icon(
-              Icons.qr_code,
-              color: Colors.white,
-            )),
-            MoltenTab(
-              icon: const Icon(
-                Icons.person,
-                color: Colors.white,
+          ),
+          Expanded(
+            child: GridView.builder(
+              itemCount: categoryList.length,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 0.95,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
               ),
+              itemBuilder: (context, index) {
+                return CategoryCard(
+                  category: categoryList[index],
+                );
+              },
             ),
-          ],
-        ),
-        body: Center(
-          child: screenList.elementAt(_selectedIndex),
-        ),
+          ),
+        ],
       ),
     );
   }
 }
+

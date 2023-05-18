@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HomePageView extends StatefulWidget {
-  const HomePageView({super.key});
+  const HomePageView({Key? key}) : super(key: key);
 
   @override
   State<HomePageView> createState() => _HomePageViewState();
@@ -37,13 +37,13 @@ class _HomePageViewState extends HomePageViewModel {
               ],
             ),
           ),
-          GridView.builder(
-              shrinkWrap: true,
+          Expanded(
+            child: GridView.builder(
               itemCount: categoryList.length,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: .95,
+                childAspectRatio: 0.95,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
@@ -51,7 +51,9 @@ class _HomePageViewState extends HomePageViewModel {
                 return CategoryCard(
                   category: categoryList[index],
                 );
-              })
+              },
+            ),
+          ),
         ],
       ),
     );
