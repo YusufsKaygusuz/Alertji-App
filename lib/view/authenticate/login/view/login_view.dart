@@ -11,7 +11,7 @@ import '../service/auth_google.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
+  
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -20,6 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   String? errorMessage = ''; // Hata mesajını tutacak değişken
   bool isLogin = true; // Giriş durumunu belirleyen değişken
   bool seePassword = false;
+  
 
   final TextEditingController _controllerEmail =
       TextEditingController(); // E-posta giriş alanı kontrolcüsü
@@ -116,22 +117,6 @@ class _LoginPageState extends State<LoginPage> {
         ? ''
         : '$errorMessage'); // Hata mesajını görüntüler veya boş bir metin döndürür
   }
-
-  // Widget _errorMesagee() {
-  //   AlertDialog alertError = AlertDialog(
-  //     title: const Text("Hata"),
-  //     content: Text(errorMessage == '' ? '' : '$errorMessage'),
-  //     actions: [
-  //       TextButton(
-  //         child: const Text("Tamam"),
-  //         onPressed: () {
-  //           Navigator.pop(context); // AlertDialog'u kapat
-  //         },
-  //       ),
-  //     ],
-  //   );
-  //   return alertError;
-  // }
 
   Widget _signUp() {
     return Row(

@@ -200,9 +200,15 @@ class _RegisterPageState extends State<RegisterPage> {
                             true) {
                           createUserWithEmailAndPassword();
                           if (FirebaseAuth.instance.currentUser != null) {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const NavigationView())); // const eklendi.
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (context) =>
+                            //         const NavigationView())); // const eklendi.
+                            Navigator.pushAndRemoveUntil(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const NavigationView()),
+                                (route) => false);
                             _controllerCheckPassword.clear();
                             _controllerPassword.clear();
                             _controllerEmail.clear();

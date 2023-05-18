@@ -16,7 +16,7 @@ Future<void> main() async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   //isViewed = prefs.getInt('onBoard');
   initScreen = await prefs.getInt("initScreen");
-  await prefs.setInt('onBoard', 1);
+  await prefs.setInt('initScreen', 1);
   runApp(const MyApp());
 }
 
@@ -37,9 +37,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
         routes: {
-          '/': (context) => LoginPage(
-              //title: "demo",
-              ),
+          '/': (context) => LoginPage(),
           "first": (context) => OnboardingView(),
         },
         //home: isViewed != 0 ? OnboardingView() : LoginPage(),
