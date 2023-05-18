@@ -1,3 +1,4 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/view/home/navigationpage/viewmodel/navigation_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
@@ -14,9 +15,14 @@ class _NavigationViewState extends NavigationViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: ColorConst.primaryColor,
+        onPressed: () {},
+        child: const Icon(Icons.qr_code),
+      ),
       bottomNavigationBar: MoltenBottomNavigationBar(
-        domeCircleColor: const Color.fromARGB(255, 65, 200, 146),
-        barColor: const Color.fromARGB(255, 71, 229, 166),
+        domeCircleColor: ColorConst.primaryDarkColor,
+        barColor: ColorConst.primaryColor,
         borderRaduis: const BorderRadius.only(
           topLeft: Radius.circular(0),
           topRight: Radius.circular(0),
@@ -31,18 +37,18 @@ class _NavigationViewState extends NavigationViewModel {
           MoltenTab(
             icon: const Icon(
               Icons.home,
-              color: Colors.white,
+              color: ColorConst.backgroundColor,
             ),
           ),
           MoltenTab(
               icon: const Icon(
             Icons.qr_code,
-            color: Colors.white,
+            color: ColorConst.backgroundColor,
           )),
           MoltenTab(
             icon: const Icon(
               Icons.person,
-              color: Colors.white,
+              color: ColorConst.backgroundColor,
             ),
           ),
         ],

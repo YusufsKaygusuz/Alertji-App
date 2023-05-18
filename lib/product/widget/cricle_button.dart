@@ -1,3 +1,4 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
@@ -13,7 +14,7 @@ class CircleButton extends StatelessWidget {
       width: 40,
       decoration: const BoxDecoration(
         shape: BoxShape.circle,
-        color: Color.fromARGB(255, 53, 174, 126),
+        color: ColorConst.primaryShadow,
       ),
       child: Center(
         child: IconButton(

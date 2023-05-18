@@ -5,7 +5,7 @@ import 'package:alertji_app/view/home/homepage/viewmodel/homepage_viewmodel.dart
 import 'package:flutter/material.dart';
 
 class HomePageView extends StatefulWidget {
-  const HomePageView({super.key});
+  const HomePageView({Key? key}) : super(key: key);
 
   @override
   State<HomePageView> createState() => _HomePageViewState();
@@ -13,6 +13,7 @@ class HomePageView extends StatefulWidget {
 
 class _HomePageViewState extends HomePageViewModel {
   late Category selectedCategory;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,13 +36,13 @@ class _HomePageViewState extends HomePageViewModel {
               ],
             ),
           ),
-          GridView.builder(
-              shrinkWrap: true,
+          Expanded(
+            child: GridView.builder(
               itemCount: categoryList.length,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: .95,
+                childAspectRatio: 0.95,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
@@ -49,7 +50,9 @@ class _HomePageViewState extends HomePageViewModel {
                 return CategoryCard(
                   category: categoryList[index],
                 );
-              })
+              },
+            ),
+          ),
         ],
       ),
     );

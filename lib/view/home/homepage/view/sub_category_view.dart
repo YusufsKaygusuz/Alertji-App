@@ -1,9 +1,11 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
+import 'package:alertji_app/product/widget/primary_button.dart';
+import 'package:alertji_app/view/home/homepage/viewmodel/sub_category_viewmodel.dart';
+import 'package:flutter/material.dart';
 import 'package:alertji_app/product/model/category_model.dart';
 import 'package:alertji_app/product/widget/custom_appbar.dart';
 import 'package:alertji_app/product/widget/search_textfield.dart';
 import 'package:alertji_app/product/model/sub_category_model.dart';
-import 'package:alertji_app/view/home/homepage/viewmodel/sub_category_viewmodel.dart';
-import 'package:flutter/material.dart';
 
 class SubCategoryView extends StatefulWidget {
   final Category selectedCategory;
@@ -18,6 +20,7 @@ class SubCategoryView extends StatefulWidget {
 class _SubCategoryViewState extends SubCategoryViewModel {
   late List<SubCategory> filteredSubCategories;
   String searchText = '';
+  List<SubCategory> selectedSubCategories = [];
 
   @override
   void initState() {
@@ -69,81 +72,47 @@ class _SubCategoryViewState extends SubCategoryViewModel {
                             .contains(searchText.toLowerCase())) {
                       return Container();
                     }
-                    return subCategoryList(
-                      subCategory.categoryId,
-                      subCategory.name,
-                      subCategory.isSelected,
-                      index,
+                    return ListTile(
+                      title: Text(
+                        subCategory.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      trailing: subCategory.isSelected
+                          ? const Icon(
+                              Icons.check_circle,
+                              color: ColorConst.primaryDarkColor,
+                            )
+                          : const Icon(
+                              Icons.check_circle_outline,
+                              color: ColorConst.hintTextcolor,
+                            ),
+                      onTap: () {
+                        setState(() {
+                          subCategory.isSelected = !subCategory.isSelected;
+                          if (subCategory.isSelected) {
+                            selectedSubCategories.add(subCategory);
+                          } else {
+                            selectedSubCategories.remove(subCategory);
+                          }
+                        });
+                      },
                     );
                   },
                 ),
               ),
-              if (selectedSubCategory.isNotEmpty)
+              if (selectedSubCategories.isNotEmpty)
                 Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 25,
-                    vertical: 10,
-                  ),
-                  child: SizedBox(
-                    child: ElevatedButton(
+                  padding: const EdgeInsets.symmetric(vertical: 25),
+                  child: PrimaryButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 71, 229, 166),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        elevation: 4,
-                      ),
-                      child: Text(
-                        "Add (${selectedSubCategory.length})",
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                        ),
-                      ),
-                    ),
-                  ),
+                      buttonText: "Add (${selectedSubCategories.length})"),
                 ),
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Widget subCategoryList(
-      int selectedCategory, String name, bool isSelected, int index) {
-    return ListTile(
-      title: Text(
-        name,
-        style: const TextStyle(
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-      trailing: isSelected
-          ? Icon(
-              Icons.check_circle,
-              color: Colors.green[700],
-            )
-          : const Icon(
-              Icons.check_circle_outline,
-              color: Colors.grey,
-            ),
-      onTap: () {
-        setState(() {
-          if (isSelected) {
-            selectedSubCategory.removeWhere(
-                (element) => element.name == subCategories[index].name);
-          } else {
-            selectedSubCategory.add(
-              SubCategory(
-                  name: name, isSelected: true, categoryId: selectedCategory),
-            );
-          }
-          subCategories[index].isSelected = !isSelected;
-        });
-      },
     );
   }
 }

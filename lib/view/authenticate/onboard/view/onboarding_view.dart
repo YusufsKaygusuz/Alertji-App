@@ -26,13 +26,14 @@ class OnboardingView extends StatelessWidget {
                     .onFinishButtonPressed(context),
             isBottomSafeArea: false,
             globalBackgroundColor: Colors.white,
-            skip: const Text('Skip', style: TextStyle(color: ColorConst.c1)),
+            skip: const Text('Skip',
+                style: TextStyle(color: ColorConst.primaryDarkColor)),
             showSkipButton: true,
             next: Container(
               width: 40,
               height: 40,
               decoration: const BoxDecoration(
-                color: ColorConst.c2,
+                color: ColorConst.primaryColor,
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -44,7 +45,7 @@ class OnboardingView extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: const BoxDecoration(
-                color: ColorConst.c2,
+                color: ColorConst.primaryDarkColor,
                 shape: BoxShape.circle,
               ),
               child: const Icon(
@@ -53,8 +54,8 @@ class OnboardingView extends StatelessWidget {
               ),
             ),
             dotsDecorator: const DotsDecorator(
-              color: ColorConst.c2,
-              activeColor: ColorConst.c1,
+              color: ColorConst.primaryColor,
+              activeColor: ColorConst.primaryDarkColor,
               size: Size(10.0, 10.0),
               activeSize: Size(22.0, 10.0),
               spacing: EdgeInsets.symmetric(horizontal: 3.0),

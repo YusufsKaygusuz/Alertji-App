@@ -1,3 +1,5 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
+import 'package:alertji_app/core/constants/screen_size.dart';
 import 'package:alertji_app/product/widget/cricle_button.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +17,10 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ScreenSize.init(context);
     return Container(
       padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-      height: MediaQuery.of(context).size.width / 3,
+      height: ScreenSize.screenWidth / 3,
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -29,8 +32,8 @@ class CustomAppBar extends StatelessWidget {
           end: Alignment.bottomRight,
           stops: [0.1, 0.5],
           colors: [
-            Color.fromARGB(255, 152, 236, 143),
-            Color.fromARGB(255, 71, 229, 166),
+            ColorConst.appbarColor,
+            ColorConst.primaryColor,
           ],
         ),
       ),
@@ -45,7 +48,7 @@ class CustomAppBar extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge
-                    ?.copyWith(color: Colors.white),
+                    ?.copyWith(color: ColorConst.backgroundColor),
               ),
               CircleButton(
                 icon: icon,

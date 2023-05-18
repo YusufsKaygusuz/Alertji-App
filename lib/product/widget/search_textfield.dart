@@ -1,3 +1,4 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:flutter/material.dart';
 
 class SearchTextField extends StatelessWidget {
@@ -11,11 +12,11 @@ class SearchTextField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: const Icon(
           Icons.search,
-          color: Colors.grey,
+          color: ColorConst.hintTextcolor,
           size: 26,
         ),
         labelText: "Search",
-        labelStyle: const TextStyle(color: Colors.grey),
+        labelStyle: const TextStyle(color: ColorConst.hintTextcolor),
         filled: true,
         fillColor: Colors.white,
         border: OutlineInputBorder(
