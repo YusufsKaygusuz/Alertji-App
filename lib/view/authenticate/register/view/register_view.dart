@@ -2,8 +2,8 @@ import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../../onboard/view/onboarding_view.dart';
-import '../../../home/homepage/view/homepage_view.dart';
-import '../../profie/view/profile_view.dart';
+// import '../../../home/homepage/view/homepage_view.dart';
+// import '../../profie/view/profile_view.dart';
 import '../service/auth.dart';
 
 class RegisterPage extends StatefulWidget {

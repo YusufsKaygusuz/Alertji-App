@@ -1,9 +1,9 @@
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
-import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
+// import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -37,10 +37,10 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
         routes: {
-          '/': (context) => LoginPage(),
-          "first": (context) => OnboardingView(),
+          '/': (context) => const LoginPage(),
+          "first": (context) => const OnboardingView(),
         },
-        //home: isViewed != 0 ? OnboardingView() : LoginPage(),
+        //home: FirebaseAuth.instance.currentUser != null ? NavigationView() : LoginPage(),
       ),
     );
   }

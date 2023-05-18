@@ -24,7 +24,7 @@ class _ProfileViewState extends State<ProfileView> {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const LoginPage()));
               },
-              child: Text("Logout")),
+              child: const Text("Logout")),
         ],
       )),
     );

@@ -1,7 +1,7 @@
-import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
+//import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../login/view/login_view.dart';
 
