@@ -13,9 +13,7 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  _storeOnBoardInfo() async {
-    
-  }
+  _storeOnBoardInfo() async {}
 
   @override
   Widget build(BuildContext context) {

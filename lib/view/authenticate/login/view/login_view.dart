@@ -2,6 +2,7 @@ import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import '../../forgotpassword/view/forgot_password_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
@@ -9,7 +10,7 @@ import '../service/auth_google.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-  
+
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -18,7 +19,6 @@ class _LoginPageState extends State<LoginPage> {
   String? errorMessage = ''; // Hata mesajını tutacak değişken
   bool isLogin = true; // Giriş durumunu belirleyen değişken
   bool seePassword = false;
-  
 
   final TextEditingController _controllerEmail =
       TextEditingController(); // E-posta giriş alanı kontrolcüsü
@@ -42,23 +42,25 @@ class _LoginPageState extends State<LoginPage> {
     required String text,
     double borderRadius = 15.0,
   }) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.5,
-      height: MediaQuery.of(context).size.height * 0.08,
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(borderRadius),
-            color: Colors.green,
-          ),
-          padding: const EdgeInsets.all(16.0),
-          child: Center(
-            child: Text(
-              text,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 35),
+      child: SizedBox(
+        child: GestureDetector(
+          onTap: onTap,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(borderRadius),
+              color: Colors.green,
+            ),
+            padding: const EdgeInsets.all(16.0),
+            child: Center(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16.0,
+                ),
               ),
             ),
           ),
@@ -71,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController controller, String hintTitle, bool password,
       {IconData? icon}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 35),
       child: TextField(
         obscureText: password ? !seePassword : false,
         controller: controller,
@@ -134,9 +136,7 @@ class _LoginPageState extends State<LoginPage> {
           child: const Text(
             "Kayıt ol",
             style: TextStyle(
-                color: Color.fromARGB(255, 204, 204, 36),
-                fontWeight: FontWeight.bold,
-                fontSize: 14),
+                color: Colors.green, fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
       ],
@@ -145,12 +145,12 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _appIcon() {
     return Container(
-      width: MediaQuery.of(context).size.width * 0.4,
-      height: MediaQuery.of(context).size.height * 0.3,
+      width: MediaQuery.of(context).size.width * 0.45,
+      height: MediaQuery.of(context).size.height * 0.45,
       decoration: BoxDecoration(
         image: const DecorationImage(
           image: AssetImage(
-            'assets/images/onboard2.jpg',
+            'assets/images/logo.jpg',
           ),
           fit: BoxFit.contain,
         ),
@@ -172,17 +172,34 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 35),
         child: SingleChildScrollView(
           child: Column(children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(35.0),
-              child: _appIcon(),
-            ),
+            _appIcon(),
             _textFieldWidget(_controllerEmail, "E-mail", false,
                 icon: Icons.mail),
             _textFieldWidget(_controllerPassword, "Şifre", true,
                 icon: Icons.lock),
+            Padding(
+              padding: const EdgeInsets.only(left: 180.0, top: 5),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ForgotPasswordPage()),
+                  );
+                },
+                child: const Text(
+                  "Şifremi Unuttum",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 12,
+                      decoration: TextDecoration.underline),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: _errorMesage(),
