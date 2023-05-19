@@ -1,12 +1,25 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-
 import '../../../authenticate/login/service/auth.dart';
 import '../../../authenticate/login/view/login_view.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
-class Body extends StatelessWidget {
-  const Body({super.key});
+class Body extends StatefulWidget {
+  const Body({Key? key});
+
+  @override
+  _BodyState createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  File? _profileImage;
+
+  void _updateProfileImage(File? newImage) {
+    setState(() {
+      _profileImage = newImage;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,31 +27,34 @@ class Body extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          const ProfilePic(),
+          ProfilePic(
+            onImageChanged: _updateProfileImage,
+            initialImage: _profileImage,
+          ),
           const SizedBox(height: 20),
           ProfileMenu(
             text: "Hesabım",
-            icon: const Icon(Icons.person),
-            press: () => {},
+            iconData: Icons.person,
+            press: () {},
           ),
           ProfileMenu(
             text: "Bildirimler",
-            icon: const Icon(Icons.notification_add),
+            iconData: Icons.notification_add,
             press: () {},
           ),
           ProfileMenu(
             text: "Ayarlar",
-            icon: const Icon(Icons.settings),
+            iconData: Icons.settings,
             press: () {},
           ),
           ProfileMenu(
             text: "Destek",
-            icon: const Icon(Icons.help_center),
+            iconData: Icons.help_center,
             press: () {},
           ),
           ProfileMenu(
             text: "Çıkış Yap",
-            icon: const Icon(Icons.logout),
+            iconData: Icons.logout,
             press: () {
               Auth().signOut();
               Navigator.pushReplacement(context,
