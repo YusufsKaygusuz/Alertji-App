@@ -1,3 +1,4 @@
+import 'package:alertji_app/config/app_router.dart';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
@@ -29,17 +30,21 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => OnboardingViewModel()),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        // routerDelegate: router.routerDelegate,
+        // routeInformationParser: router.routeInformationParser,
+        // routeInformationProvider: router.routeInformationProvider,
         debugShowCheckedModeBanner: false,
         title: 'Alertji-App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
-        routes: {
-          '/': (context) => const LoginPage(),
-          "first": (context) => const OnboardingView(),
-        },
+        routerConfig: router,
+        // initialRoute: initScreen == 0 || initScreen == null ? "first" : "/",
+        // routes: {
+        //   '/': (context) => const LoginPage(),
+        //   "first": (context) => const OnboardingView(),
+        // },
         //home: FirebaseAuth.instance.currentUser != null ? NavigationView() : LoginPage(),
       ),
     );

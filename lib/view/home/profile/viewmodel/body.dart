@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../../../authenticate/login/service/auth.dart';
-import '../../../authenticate/login/view/login_view.dart';
 import 'profile_menu.dart';
 import 'profile_pic.dart';
 
@@ -57,8 +57,7 @@ class _BodyState extends State<Body> {
             iconData: Icons.logout,
             press: () {
               Auth().signOut();
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const LoginPage()));
+                  context.go('/login');
             },
           ),
         ],

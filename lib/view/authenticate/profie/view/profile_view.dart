@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../login/view/login_view.dart';
+import 'package:go_router/go_router.dart';
 import '../service/auth.dart';
-
 
 class ProfilePageTemp extends StatefulWidget {
   const ProfilePageTemp({super.key});
@@ -12,22 +11,25 @@ class ProfilePageTemp extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePageTemp> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
           children: [
-            Container(height: 50, width: 15,color: Colors.red,),
+            Container(
+              height: 50,
+              width: 15,
+              color: Colors.red,
+            ),
             Text(FirebaseAuth.instance.currentUser!.email!),
-            Text(FirebaseAuth.instance.currentUser!.displayName?? 'name'),
+            Text(FirebaseAuth.instance.currentUser!.displayName ?? 'name'),
             ElevatedButton(
-              onPressed: (){
-                Auth().signOut();
-                Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => const LoginPage())); // const eklendi.
-              },
-               child: const Text("Logout"))
+                onPressed: () {
+                  Auth().signOut();
+                  context.go('/'); // const eklendi.
+                },
+                child: const Text("Logout"))
           ],
         ),
       ),
