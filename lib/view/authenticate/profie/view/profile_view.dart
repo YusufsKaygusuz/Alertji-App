@@ -1,6 +1,6 @@
+import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:go_router/go_router.dart';
 import '../service/auth.dart';
 
 class ProfilePageTemp extends StatefulWidget {
@@ -27,7 +27,9 @@ class _ProfilePageState extends State<ProfilePageTemp> {
             ElevatedButton(
                 onPressed: () {
                   Auth().signOut();
-                  context.go('/'); // const eklendi.
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      (Route<dynamic> route) => false);
                 },
                 child: const Text("Logout"))
           ],

@@ -2,7 +2,6 @@ import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +35,6 @@ class _OnboardingViewState extends State<OnboardingView> {
       setState(() {
         this.isFirstTime = false;
       });
-      context.go('/login');
     }
   }
 
