@@ -7,6 +7,7 @@ import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
 import '../service/auth_google.dart';
+import '../viewmodel/drawclip.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
     double borderRadius = 15.0,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 35),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: SizedBox(
         child: GestureDetector(
           onTap: onTap,
@@ -73,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
       TextEditingController controller, String hintTitle, bool password,
       {IconData? icon}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 35),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 30),
       child: TextField(
         obscureText: password ? !seePassword : false,
         controller: controller,
@@ -147,15 +148,14 @@ class _LoginPageState extends State<LoginPage> {
     return Container(
       width: MediaQuery.of(context).size.width * 0.45,
       height: MediaQuery.of(context).size.height * 0.45,
-      decoration: BoxDecoration(
-        image: const DecorationImage(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
           image: AssetImage(
-            'assets/images/logo.jpg',
+            'assets/images/logo.png',
           ),
           fit: BoxFit.contain,
         ),
         shape: BoxShape.circle,
-        border: Border.all(color: Colors.greenAccent, width: 1),
       ),
     );
   }
@@ -169,69 +169,121 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 35),
         child: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            _appIcon(),
-            _textFieldWidget(_controllerEmail, "E-mail", false,
-                icon: Icons.mail),
-            _textFieldWidget(_controllerPassword, "Şifre", true,
-                icon: Icons.lock),
-            Padding(
-              padding: const EdgeInsets.only(left: 180.0, top: 5),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ForgotPasswordPage()),
-                  );
-                },
-                child: const Text(
-                  "Şifremi Unuttum",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 12,
-                      decoration: TextDecoration.underline),
+          child: Column(children: [
+            Stack(
+              children: [
+                ClipPath(
+                  clipper: DrawClip2(),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.5,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 152, 236, 143),
+                          Color.fromARGB(255, 71, 229, 166),
+                          Color.fromARGB(255, 65, 200, 146),
+                        ],
+                        stops: [0.0, 0.5, 1.0], // Durakları ayarla
+                        begin: Alignment.bottomCenter,
+                        end: Alignment.bottomRight,
+                        tileMode: TileMode.clamp,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+                ClipPath(
+                  clipper: DrawClip(),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * 0.45,
+                    decoration: const BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Color.fromARGB(255, 65, 200, 146),
+                          Color.fromARGB(255, 71, 229, 166),
+                          Color.fromARGB(255, 152, 236, 143),
+                        ],
+                        stops: [0.0, 0.5, 1.0], // Durakları ayarla
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        tileMode: TileMode.clamp,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Column(
+                    children: [
+                      _appIcon(),
+                      _textFieldWidget(_controllerEmail, "E-mail", false,
+                          icon: Icons.mail),
+                      _textFieldWidget(_controllerPassword, "Şifre", true,
+                          icon: Icons.lock),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 180.0, top: 5),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Şifremi Unuttum",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 12,
+                                decoration: TextDecoration.underline),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: _errorMesage(),
+                      ), // Hata mesajını görüntüler veya boş bir metin döndürür
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: _button(
+                            onTap: () async {
+                              await signInWithEmailAndPassword();
+                              if (FirebaseAuth.instance.currentUser != null) {
+                                _controllerEmail.clear();
+                                _controllerPassword.clear();
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const NavigationView()),
+                                    (Route<dynamic> route) => false);
+                              }
+                            },
+                            text: 'Giriş Yap'),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 90.0, top: 8),
+                        child: _signUp(),
+                      ),
+                      const SizedBox(height: 20),
+                      SignInButton(Buttons.Google, text: "Google ile giriş yap",
+                          onPressed: () {
+                        AuthGoogle().signInWithGoogle();
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>
+                                const ProfilePageTemp())); // const eklendi.
+                      })
+                    ],
+                  ),
+                ),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _errorMesage(),
-            ), // Hata mesajını görüntüler veya boş bir metin döndürür
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: _button(
-                  onTap: () async {
-                    await signInWithEmailAndPassword();
-                    if (FirebaseAuth.instance.currentUser != null) {
-                      _controllerEmail.clear();
-                      _controllerPassword.clear();
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const NavigationView()),
-                          (Route<dynamic> route) => false);
-                    }
-                  },
-                  text: 'Giriş Yap'),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 90.0, top: 8),
-              child: _signUp(),
-            ),
-            const SizedBox(height: 20),
-            SignInButton(Buttons.Google, text: "Google ile giriş yap",
-                onPressed: () {
-              AuthGoogle().signInWithGoogle();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) =>
-                      const ProfilePageTemp())); // const eklendi.
-            })
           ]),
         ),
       ),

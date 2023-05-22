@@ -9,7 +9,7 @@ class ProfileMenu extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final IconData iconData; 
+  final IconData iconData;
   final VoidCallback? press;
 
   @override
@@ -18,7 +18,7 @@ class ProfileMenu extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       child: TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.green,
+          foregroundColor: Colors.green.shade600,
           padding: const EdgeInsets.all(15),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
@@ -29,7 +29,7 @@ class ProfileMenu extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: 20),
-            Icon(iconData), 
+            Icon(iconData),
             const SizedBox(width: 20),
             Expanded(child: Text(text)),
             const Icon(Icons.arrow_forward_ios),

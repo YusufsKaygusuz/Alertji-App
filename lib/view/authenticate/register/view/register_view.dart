@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
       TextEditingController controller, String hintTitle, bool password,
       {IconData? icon}) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 3),
+      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 30),
       child: TextField(
         obscureText: password ? !seePassword : false,
         controller: controller,
@@ -151,19 +151,21 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Kayıt Ol"),
+        centerTitle: true,
+        backgroundColor: Colors.green,
+      ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 35),
         child: SingleChildScrollView(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _appIcon(),
-                const SizedBox(
-                  height: 18,
-                ),
                 _textFieldWidget(_controllerName, "İsim", false,
                     icon: Icons.person),
                 _textFieldWidget(_controllerEmail, "E-mail", false,
