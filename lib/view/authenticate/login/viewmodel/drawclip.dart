@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 class DrawClip extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
