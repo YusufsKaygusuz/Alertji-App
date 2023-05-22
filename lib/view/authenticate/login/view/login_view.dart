@@ -207,18 +207,15 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: _button(
-                  onTap: () {
-                    signInWithEmailAndPassword();
+                  onTap: () async {
+                    await signInWithEmailAndPassword();
                     if (FirebaseAuth.instance.currentUser != null) {
                       _controllerEmail.clear();
                       _controllerPassword.clear();
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => NavigationView()),
+                              builder: (context) => const NavigationView()),
                           (Route<dynamic> route) => false);
-                      // Navigator.of(context).push(MaterialPageRoute(
-                      //     builder: (context) =>
-                      //         const NavigationView())); // const eklendi.
                     }
                   },
                   text: 'Giriş Yap'),
