@@ -1,5 +1,6 @@
 import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/product/widget/primary_button.dart';
+import 'package:alertji_app/view/home/homepage/viewmodel/homepage_viewmodel.dart';
 import 'package:alertji_app/view/home/homepage/viewmodel/sub_category_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:alertji_app/product/model/category_model.dart';
@@ -21,21 +22,26 @@ class _SubCategoryViewState extends SubCategoryViewModel {
   late List<SubCategory> filteredSubCategories;
   String searchText = '';
   List<SubCategory> selectedSubCategories = [];
-
   @override
   void initState() {
     super.initState();
-    filteredSubCategories = subCategories
+
+    filteredSubCategories = SubCategoryViewModel.subCategories
         .where((subCategory) =>
             subCategory.categoryId == widget.selectedCategory.categoryId)
         .toList();
+
+    // Clear the selected subcategories list
+    selectedSubCategories.clear();
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        Navigator.pop(context);
+        Navigator.pop(
+          context,
+        );
         return false;
       },
       child: Scaffold(
@@ -47,7 +53,8 @@ class _SubCategoryViewState extends SubCategoryViewModel {
                 text:
                     "Choose ${widget.selectedCategory.name}\nyou are allergic to..",
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(
+                      context, HomePageViewModel.allSelectedSubCategories);
                 },
               ),
               Padding(
@@ -106,8 +113,19 @@ class _SubCategoryViewState extends SubCategoryViewModel {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
                   child: PrimaryButton(
-                      onPressed: () {},
-                      buttonText: "Add (${selectedSubCategories.length})"),
+                    onPressed: () {
+                      // Add button pressed
+                      for (var subCategory in selectedSubCategories) {
+                        if (!isSubCategorySelected(subCategory)) {
+                          HomePageViewModel.allSelectedSubCategories
+                              .add(subCategory);
+                        }
+                      }
+                      selectedSubCategories.clear();
+                      setState(() {});
+                    },
+                    buttonText: "Add (${selectedSubCategories.length})",
+                  ),
                 ),
             ],
           ),

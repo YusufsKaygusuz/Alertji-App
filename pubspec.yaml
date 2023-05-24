@@ -44,7 +44,7 @@ dependencies:
   cloud_firestore: ^4.7.0
   molten_navigationbar_flutter: ^1.0.1
   shared_preferences: ^2.1.1
-
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:
