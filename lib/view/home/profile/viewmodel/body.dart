@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
+import 'package:alertji_app/view/home/profile/settings/view/settings_view.dart';
+import 'package:alertji_app/view/home/profile/support/support_view.dart';
 import 'package:flutter/material.dart';
 import '../../../authenticate/login/service/auth.dart';
 import 'profile_menu.dart';
-import 'profile_pic.dart';
 
 class Body extends StatefulWidget {
   const Body({Key? key});
@@ -13,24 +14,12 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  File? _profileImage;
-
-  void _updateProfileImage(File? newImage) {
-    setState(() {
-      _profileImage = newImage;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          ProfilePic(
-            onImageChanged: _updateProfileImage,
-            initialImage: _profileImage,
-          ),
           const SizedBox(height: 20),
           ProfileMenu(
             text: "Hesabım",
@@ -45,12 +34,20 @@ class _BodyState extends State<Body> {
           ProfileMenu(
             text: "Ayarlar",
             iconData: Icons.settings,
-            press: () {},
+            press: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                  (Route<dynamic> route) => false);
+            },
           ),
           ProfileMenu(
             text: "Destek",
             iconData: Icons.help_center,
-            press: () {},
+            press: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => SupportPage()),
+                  (Route<dynamic> route) => false);
+            },
           ),
           ProfileMenu(
             text: "Çıkış Yap",

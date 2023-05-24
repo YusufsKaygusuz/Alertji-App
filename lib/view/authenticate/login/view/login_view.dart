@@ -225,6 +225,7 @@ class _LoginPageState extends State<LoginPage> {
                           icon: Icons.mail),
                       _textFieldWidget(_controllerPassword, "Şifre", true,
                           icon: Icons.lock),
+
                       Padding(
                         padding: const EdgeInsets.only(left: 180.0, top: 5),
                         child: InkWell(
