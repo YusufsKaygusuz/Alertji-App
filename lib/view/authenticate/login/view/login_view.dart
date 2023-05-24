@@ -212,9 +212,13 @@ class _LoginPageState extends State<LoginPage> {
                     if (FirebaseAuth.instance.currentUser != null) {
                       _controllerEmail.clear();
                       _controllerPassword.clear();
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              const NavigationView())); // const eklendi.
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => NavigationView()),
+                          (Route<dynamic> route) => false);
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) =>
+                      //         const NavigationView())); // const eklendi.
                     }
                   },
                   text: 'Giriş Yap'),

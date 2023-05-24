@@ -46,6 +46,9 @@ dependencies:
   shared_preferences: ^2.1.1
   google_fonts: ^4.0.4
 
+  image_picker: ^0.8.7+5
+  path_provider: ^2.0.15
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
