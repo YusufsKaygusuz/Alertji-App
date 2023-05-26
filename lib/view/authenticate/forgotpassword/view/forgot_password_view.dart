@@ -1,5 +1,8 @@
+import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../product/widget/draw_clip.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({Key? key}) : super(key: key);
@@ -52,34 +55,40 @@ class ForgotPasswordPage extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.green,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
-                style: TextStyle(fontSize: 14),
-                textAlign: TextAlign.center,
+      body: Column(
+        children: [
+          Stack(children: [
+            const SizedBox(height: 240, child: CustomGradientClip()),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 200,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(20.0),
+                    child: Text(
+                      "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
+                      style: TextStyle(fontSize: 14),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  _textFieldWidget(mailController, "E-mail"),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                    child: GradientButton(
+                        onPressed: () => {resetPassword(context)},
+                        text: "Gönder"),
+                  )
+                ],
               ),
-              _textFieldWidget(mailController, "E-mail"),
-              Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-              ),
-              ElevatedButton(
-                onPressed: () => {resetPassword(context)},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                ),
-                child: const Text(
-                  'Gönder',
-                  style: TextStyle(fontSize: 14),
-                ),
-              ),
-            ],
-          ),
-        ),
+            ),
+          ]),
+        ],
       ),
     );
   }

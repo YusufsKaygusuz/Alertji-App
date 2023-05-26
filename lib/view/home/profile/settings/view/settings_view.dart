@@ -1,9 +1,9 @@
 import 'package:alertji_app/view/home/profile/view/profie_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../../navigationpage/view/navigation_view.dart';
-
 class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
+
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
@@ -46,10 +46,11 @@ class _SettingsPageState extends State<SettingsPage> {
               child: ListTile(
                 title: Text(
                   isDarkModeEnabled ? 'Açık Mod' : 'Koyu Mod',
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 trailing: Transform.scale(
-                  scale: 1.5, 
+                  scale: 1.5,
                   child: Switch(
                     value: isDarkModeEnabled,
                     onChanged: (bool? value) {

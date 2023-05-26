@@ -1,3 +1,5 @@
+import 'package:alertji_app/product/widget/draw_clip.dart';
+import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,6 @@ import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
 import '../service/auth_google.dart';
-import '../viewmodel/drawclip.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -37,38 +38,6 @@ class _LoginPageState extends State<LoginPage> {
             .message; // Hata durumunda hatayı göstermek için errorMessage değişkenini günceller
       });
     }
-  }
-
-  Widget _button({
-    required VoidCallback onTap,
-    required String text,
-    double borderRadius = 15.0,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
-              color: Colors.green,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   Widget _textFieldWidget(
@@ -177,45 +146,8 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(children: [
             Stack(
               children: [
-                ClipPath(
-                  clipper: DrawClip2(),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.5,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 152, 236, 143),
-                          Color.fromARGB(255, 71, 229, 166),
-                          Color.fromARGB(255, 65, 200, 146),
-                        ],
-                        stops: [0.0, 0.5, 1.0], // Durakları ayarla
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.bottomRight,
-                        tileMode: TileMode.clamp,
-                      ),
-                    ),
-                  ),
-                ),
-                ClipPath(
-                  clipper: DrawClip(),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * 0.45,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color.fromARGB(255, 65, 200, 146),
-                          Color.fromARGB(255, 71, 229, 166),
-                          Color.fromARGB(255, 152, 236, 143),
-                        ],
-                        stops: [0.0, 0.5, 1.0], // Durakları ayarla
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        tileMode: TileMode.clamp,
-                      ),
-                    ),
-                  ),
+                const CustomGradientClip(
+                  isTopToBottom: true,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
@@ -252,9 +184,11 @@ class _LoginPageState extends State<LoginPage> {
                         child: _errorMesage(),
                       ), // Hata mesajını görüntüler veya boş bir metin döndürür
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: _button(
-                            onTap: () async {
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 50.0,
+                        ),
+                        child: GradientButton(
+                            onPressed: () async {
                               await signInWithEmailAndPassword();
                               if (FirebaseAuth.instance.currentUser != null) {
                                 _controllerEmail.clear();
