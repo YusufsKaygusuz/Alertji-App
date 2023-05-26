@@ -23,7 +23,7 @@ class _HomePageViewState extends HomePageViewModel {
           CustomAppBar(
             icon: Icons.notifications,
             onPressed: () {},
-            text: 'Welcome, ' + userName,
+            text: 'Welcome, ' + userName
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

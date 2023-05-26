@@ -1,4 +1,4 @@
-import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
+import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import '../../onboard/view/onboarding_view.dart';
@@ -202,14 +202,12 @@ class _RegisterPageState extends State<RegisterPage> {
                             true) {
                           createUserWithEmailAndPassword();
                           if (FirebaseAuth.instance.currentUser != null) {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         const NavigationView())); // const eklendi.
+                            Auth().verifyEmail();
                             Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                        const NavigationView()),
+                                        const VerifyEmailPage()),
                                 (route) => false);
                             _controllerCheckPassword.clear();
                             _controllerPassword.clear();

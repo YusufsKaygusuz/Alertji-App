@@ -1,3 +1,4 @@
+import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -258,11 +259,19 @@ class _LoginPageState extends State<LoginPage> {
                               if (FirebaseAuth.instance.currentUser != null) {
                                 _controllerEmail.clear();
                                 _controllerPassword.clear();
-                                Navigator.of(context).pushAndRemoveUntil(
+                                if (Auth().verifyEmail() == true) {
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const NavigationView()),
+                                      (Route<dynamic> route) => false);
+                                } else {
+                                  Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const NavigationView()),
-                                    (Route<dynamic> route) => false);
+                                            const VerifyEmailPage()),
+                                  );
+                                }
                               }
                             },
                             text: 'Giriş Yap'),

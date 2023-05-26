@@ -53,4 +53,9 @@ class Auth {
       return false;
     }
   }
+  // Email onaylaması yapılıyor
+  void verifyEmail(){
+    User? user =FirebaseAuth.instance.currentUser;
+    user!.sendEmailVerification(); 
+  }
 }

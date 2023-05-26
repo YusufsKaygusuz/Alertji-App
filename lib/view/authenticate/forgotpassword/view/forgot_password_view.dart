@@ -59,7 +59,7 @@ class ForgotPasswordPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için size bir link gönderelim.",
+                "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
                 style: TextStyle(fontSize: 14),
                 textAlign: TextAlign.center,
               ),

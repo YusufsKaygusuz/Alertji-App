@@ -25,4 +25,16 @@ class Auth {
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
+
+  bool verifyEmail(){
+    User? user =FirebaseAuth.instance.currentUser;
+    if(!(user!.emailVerified))
+    {
+      user.sendEmailVerification();
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
 }
