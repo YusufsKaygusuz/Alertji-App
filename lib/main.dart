@@ -1,5 +1,6 @@
 import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
+import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';

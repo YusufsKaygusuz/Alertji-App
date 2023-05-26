@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:alertji_app/product/widget/primary_button.dart';
+import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
+import 'package:alertji_app/view/authenticate/verifyEmail/service/auth_verify.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -54,23 +56,22 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
       padding: const EdgeInsets.all(30.0),
       child: Column(
         children: [
-          const Text("Email verification has been sen to your email."),
+          const Text("Email verification has been sent to your email."),
           PrimaryButton(
             buttonText: 'Resent Email',
             onPressed: () {
-              if (onPressedValue == true) {
-                FirebaseAuth.instance.currentUser!.sendEmailVerification();
-                setState(() {
-                  onPressedValue = false;
-                });
-                Timer(const Duration(seconds: 5), () {
-                  setState(() {
-                    onPressedValue = true;
-                  });
-                });
-              }
+              FirebaseAuth.instance.currentUser!.sendEmailVerification();
             },
-          )
+          ),
+          PrimaryButton(
+            buttonText: 'Go back and logout',
+            onPressed: () {
+              Auth().signOut();
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => const LoginPage()),
+                  (Route<dynamic> route) => false);
+            },
+          ),
         ],
       ),
     ));
