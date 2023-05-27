@@ -38,6 +38,13 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     super.dispose();
   }
 
+  Future<void> sendAgain() async {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await user.sendEmailVerification();
+  }
+}
+
   Future checkEmailVerified() async {
     await FirebaseAuth.instance.currentUser!.reload();
     setState(() {
@@ -63,11 +70,11 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 150),
                 child: Column(children: [
                   const Text(
-                    "Email doğrulaması e-mail hesabınıza yollanmıştır.Lütfen e-mail doğrulamanızı yapınız.",
+                    "Email doğrulaması e-mail hesabınıza yollanmıştır. Lütfen e-mail doğrulamanızı yapınız.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
                   SizedBox(height: 100),
@@ -75,10 +82,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                     padding: const EdgeInsets.all(12.0),
                     child: GradientButton(
                         onPressed: () {
-                          FirebaseAuth.instance.currentUser!
-                              .sendEmailVerification();
+                          sendAgain();
                         },
-                        text: "Tekrar e-mail gönder."),
+                        text: "Tekrar e-mail gönder"),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(12.0),

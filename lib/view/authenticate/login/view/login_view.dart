@@ -1,3 +1,4 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
@@ -93,9 +94,9 @@ class _LoginPageState extends State<LoginPage> {
     return Row(
       children: [
         const Text(
-          "Hesabınız yok mu ?",
+          "Hesabınız yok mu? ",
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.grey, fontSize: 14),
+              fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 14),
         ),
         InkWell(
           onTap: () {
@@ -107,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
           child: const Text(
             "Kayıt ol",
             style: TextStyle(
-                color: Colors.green, fontWeight: FontWeight.bold, fontSize: 14),
+                color: ColorConst.primaryColor, fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
       ],
