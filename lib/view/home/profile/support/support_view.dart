@@ -1,3 +1,5 @@
+import 'package:alertji_app/product/widget/draw_clip.dart';
+import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -19,38 +21,6 @@ class SupportPage extends StatelessWidget {
     }
   }
 
-  Widget _button({
-    required VoidCallback onTap,
-    required String text,
-    double borderRadius = 15.0,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
-      child: SizedBox(
-        child: GestureDetector(
-          onTap: onTap,
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(borderRadius),
-              color: Colors.green,
-            ),
-            padding: const EdgeInsets.all(16.0),
-            child: Center(
-              child: Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 16.0,
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,22 +36,35 @@ class SupportPage extends StatelessWidget {
           },
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Bize Ulaşın',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16.0),
-            const Text(
-                'Herhangi bir soru, öneri veya geri bildiriminiz mi var? Bize e-posta gönderin.'),
-            const SizedBox(height: 16.0),
-            _button(onTap: _sendEmail, text: 'Bize Ulaşın')
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              const CustomGradientClip(),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40.0, vertical: 150),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Bize Ulaşın',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 16.0),
+                    const Text(
+                      'Herhangi bir soru, öneri veya geri bildiriminiz mi var? Bize e-posta gönderin.',
+                      style: TextStyle(fontSize: 14),
+                    ),
+                    const SizedBox(height: 100.0),
+                    GradientButton(onPressed: _sendEmail, text: 'Bize Ulaşın')
+                  ],
+                ),
+              )
+            ],
+          ),
+        ],
       ),
     );
   }

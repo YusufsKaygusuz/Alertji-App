@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/home/profile/settings/view/settings_view.dart';
 import 'package:alertji_app/view/home/profile/support/support_view.dart';
