@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:alertji_app/product/widget/draw_clip.dart';
+import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/product/widget/primary_button.dart';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/service/auth_verify.dart';
@@ -52,28 +54,51 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(30.0),
-      child: Column(
+      body: Column(
         children: [
-          const Text("Email verification has been sent to your email."),
-          PrimaryButton(
-            buttonText: 'Resent Email',
-            onPressed: () {
-              FirebaseAuth.instance.currentUser!.sendEmailVerification();
-            },
-          ),
-          PrimaryButton(
-            buttonText: 'Go back and logout',
-            onPressed: () {
-              Auth().signOut();
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const LoginPage()),
-                  (Route<dynamic> route) => false);
-            },
+          Stack(
+            children: [
+              CustomGradientClip(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 150),
+                child: Column(children: [
+                  const Text(
+                    "Email doğrulaması e-mail hesabınıza yollanmıştır.Lütfen e-mail doğrulamanızı yapınız.",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  SizedBox(height: 100),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GradientButton(
+                        onPressed: () {
+                          FirebaseAuth.instance.currentUser!
+                              .sendEmailVerification();
+                        },
+                        text: "Tekrar e-mail gönder."),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: GradientButton(
+                      onPressed: () {
+                        Auth().signOut();
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const LoginPage()),
+                            (Route<dynamic> route) => false);
+                      },
+                      text: "Geri dön ve çıkış yap",
+                    ),
+                  )
+                ]),
+              )
+            ],
           ),
         ],
       ),
-    ));
+    );
   }
 }
