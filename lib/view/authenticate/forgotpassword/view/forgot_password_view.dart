@@ -1,7 +1,9 @@
+import 'package:alertji_app/product/widget/login_appbar.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../product/widget/custom_appbar.dart';
 import '../../../../product/widget/draw_clip.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
@@ -50,10 +52,8 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Şifremi Unuttum"),
-        centerTitle: true,
-        backgroundColor: Colors.green,
+      appBar: const LoginAppBar(
+        title: ("Şifremi Unuttum"),
       ),
       body: Column(
         children: [

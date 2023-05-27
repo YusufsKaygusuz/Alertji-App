@@ -102,9 +102,23 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Kayıt Ol"),
-        centerTitle: true,
-        backgroundColor: Colors.green,
+        elevation: 0,
+        title: Text("Kayıt Ol"),
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 152, 236, 143),
+                Color.fromARGB(255, 71, 229, 166),
+                Color.fromARGB(255, 65, 200, 146),
+              ],
+              stops: [0.0, 0.5, 1.0],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              tileMode: TileMode.clamp,
+            ),
+          ),
+        ),
       ),
       body: SizedBox(
         height: double.infinity,
@@ -113,7 +127,7 @@ class _RegisterPageState extends State<RegisterPage> {
           child: Column(children: [
             Stack(children: [
               const SizedBox(
-                height: 180,
+                height: 150,
                 child: CustomGradientClip(
                   isTopToBottom: true,
                 ),
