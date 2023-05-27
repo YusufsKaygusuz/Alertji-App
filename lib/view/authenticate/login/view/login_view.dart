@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
@@ -5,12 +7,13 @@ import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
+//import 'package:flutter_signin_button/flutter_signin_button.dart';
 import '../../forgotpassword/view/forgot_password_view.dart';
 import '../../profie/view/profile_view.dart';
 import '../../register/view/register_view.dart';
 import '../service/auth.dart';
 import '../service/auth_google.dart';
+import 'package:sign_in_button/sign_in_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -108,7 +111,9 @@ class _LoginPageState extends State<LoginPage> {
           child: const Text(
             "Kayıt ol",
             style: TextStyle(
-                color: ColorConst.primaryColor, fontWeight: FontWeight.bold, fontSize: 14),
+                color: ColorConst.primaryColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 14),
           ),
         ),
       ],
@@ -216,13 +221,23 @@ class _LoginPageState extends State<LoginPage> {
                         child: _signUp(),
                       ),
                       const SizedBox(height: 20),
-                      SignInButton(Buttons.Google, text: "Google ile giriş yap",
-                          onPressed: () {
-                        AuthGoogle().signInWithGoogle();
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                const ProfilePageTemp())); // const eklendi.
-                      })
+                      InkWell(
+                        child: Container(
+                          child: Image.network(
+                            "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
+                            height: 50,
+                            width: 50,
+                          ),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 3.5, color: ColorConst.primaryColor),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                        ),
+                        onTap: () {
+                          //Google auth kodları buraya yazılacak
+                        },
+                      ),
                     ],
                   ),
                 ),

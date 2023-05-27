@@ -40,7 +40,7 @@ dependencies:
   introduction_screen: ^3.1.8
   provider: ^6.0.5
   google_sign_in: ^6.1.0
-  flutter_signin_button: ^2.0.0
+  #flutter_signin_button: ^2.0.0
   cloud_firestore: ^4.7.0
   molten_navigationbar_flutter: ^1.0.1
   shared_preferences: ^2.1.1
@@ -49,6 +49,7 @@ dependencies:
   go_router: ^7.0.2
   google_fonts: ^4.0.4
   url_launcher: ^6.0.12
+  sign_in_button: ^3.2.0
 
 
 dev_dependencies:

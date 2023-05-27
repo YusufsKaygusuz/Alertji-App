@@ -70,7 +70,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 150),
                 child: Column(children: [
                   const Text(
-                    "Email doğrulaması e-mail hesabınıza yollanmıştır. Lütfen e-mail doğrulamanızı yapınız.",
+                    "Email doğrulaması e-mail hesabınıza gönderilmiştir. Lütfen e-mail doğrulamanızı yapınız.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16,
