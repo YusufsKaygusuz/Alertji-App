@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
-import 'package:alertji_app/product/widget/primary_button.dart';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/service/auth_verify.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
@@ -52,6 +50,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
     });
     if (isVerified) {
       timer?.cancel();
+      // ignore: use_build_context_synchronously
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const NavigationView()),
           (Route<dynamic> route) => false);
@@ -65,9 +64,9 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
         children: [
           Stack(
             children: [
-              CustomGradientClip(),
+              const CustomGradientClip(),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 150),
+                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 150),
                 child: Column(children: [
                   const Text(
                     "Email doğrulaması e-mail hesabınıza gönderilmiştir. Lütfen e-mail doğrulamanızı yapınız.",
@@ -77,7 +76,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: GradientButton(

@@ -8,13 +8,17 @@ import '../view/profie_view.dart';
 class SupportPage extends StatelessWidget {
   final String supportEmail = 'alertjiapp@gmail.com';
 
+  const SupportPage({super.key});
+
   Future<void> _sendEmail() async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: supportEmail,
     );
 
+    // ignore: deprecated_member_use
     if (await canLaunch(emailUri.toString())) {
+      // ignore: deprecated_member_use
       await launch(emailUri.toString());
     } else {
       throw 'Could not launch email';
@@ -25,7 +29,7 @@ class SupportPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Destek"),
+        title: const Text("Destek"),
         elevation: 0,
         flexibleSpace: Container(
           decoration: const BoxDecoration(

@@ -2,7 +2,6 @@ import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/home/navigationpage/viewmodel/navigation_viewmodel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:molten_navigationbar_flutter/molten_navigationbar_flutter.dart';
 

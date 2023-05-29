@@ -14,7 +14,6 @@ class OnboardingView extends StatefulWidget {
 }
 
 class _OnboardingViewState extends State<OnboardingView> {
-  _storeOnBoardInfo() async {}
   bool isFirstTime = true;
 
   @override
@@ -103,7 +102,7 @@ class _OnboardingViewState extends State<OnboardingView> {
         ),
       );
     } else {
-      return LoginPage();
+      return const LoginPage();
     }
   }
 }

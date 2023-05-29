@@ -7,6 +7,7 @@ class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _SettingsPageState createState() => _SettingsPageState();
 }
 
@@ -18,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ayarlar"),
+        title: const Text("Ayarlar"),
         elevation: 0,
         flexibleSpace: Container(
           decoration: const BoxDecoration(
@@ -49,7 +50,7 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           Stack(
             children: [
-              CustomGradientClip(),
+              const CustomGradientClip(),
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: Column(

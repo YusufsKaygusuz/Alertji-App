@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text("Kayıt Ol"),
+        title: const Text("Kayıt Ol"),
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(

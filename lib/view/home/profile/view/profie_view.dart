@@ -32,7 +32,7 @@ class _ProfileViewState extends State<ProfileView> {
           ),
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => const NavigationView()),

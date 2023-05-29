@@ -6,9 +6,11 @@ import '../../../authenticate/login/service/auth.dart';
 import 'profile_menu.dart';
 
 class Body extends StatefulWidget {
+  // ignore: use_key_in_widget_constructors
   const Body({Key? key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _BodyState createState() => _BodyState();
 }
 
@@ -35,7 +37,7 @@ class _BodyState extends State<Body> {
             iconData: Icons.settings,
             press: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => SettingsPage()),
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
                   (Route<dynamic> route) => false);
             },
           ),
@@ -44,7 +46,7 @@ class _BodyState extends State<Body> {
             iconData: Icons.help_center,
             press: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => SupportPage()),
+                  MaterialPageRoute(builder: (context) => const SupportPage()),
                   (Route<dynamic> route) => false);
             },
           ),

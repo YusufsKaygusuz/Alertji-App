@@ -194,12 +194,14 @@ class _LoginPageState extends State<LoginPage> {
                                 _controllerEmail.clear();
                                 _controllerPassword.clear();
                                 if (Auth().verifyEmail() == true) {
+                                  // ignore: use_build_context_synchronously
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                           builder: (context) =>
                                               const NavigationView()),
                                       (Route<dynamic> route) => false);
                                 } else {
+                                  // ignore: use_build_context_synchronously
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (context) =>
@@ -217,15 +219,15 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(height: 20),
                       InkWell(
                         child: Container(
-                          child: Image.network(
-                            "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
-                            height: 50,
-                            width: 50,
-                          ),
                           decoration: BoxDecoration(
                             border: Border.all(
                                 width: 3.5, color: ColorConst.primaryColor),
                             borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Image.network(
+                            "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
+                            height: 50,
+                            width: 50,
                           ),
                         ),
                         onTap: () {

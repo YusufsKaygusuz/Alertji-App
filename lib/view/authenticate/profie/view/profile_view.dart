@@ -28,7 +28,7 @@ class _ProfilePageState extends State<ProfilePageTemp> {
                 onPressed: () {
                   Auth().signOut();
                   Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => LoginPage()),
+                      MaterialPageRoute(builder: (context) => const LoginPage()),
                       (Route<dynamic> route) => false);
                 },
                 child: const Text("Logout"))

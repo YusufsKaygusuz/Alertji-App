@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
-  const LoginAppBar({required this.title});
+  //const LoginAppBar({required this.title});
+  const LoginAppBar({super.key, required this.title});
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
