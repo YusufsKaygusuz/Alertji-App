@@ -59,7 +59,7 @@ class _NavigationViewState extends NavigationViewModel {
           ),
           MoltenTab(
               icon: const Icon(
-            Icons.qr_code,
+            Icons.checklist_rtl_sharp,
             color: ColorConst.backgroundColor,
           )),
           MoltenTab(

@@ -23,7 +23,8 @@ class _HomePageViewState extends HomePageViewModel {
           CustomAppBar(
             icon: Icons.notifications,
             onPressed: () {},
-            text: 'Welcome, ' + userName
+
+            text: 'Welcome, $userName',
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
@@ -39,17 +40,17 @@ class _HomePageViewState extends HomePageViewModel {
           ),
           Expanded(
             child: GridView.builder(
-              itemCount: categoryList.length,
+              itemCount: HomePageViewModel.categoryList.length,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                childAspectRatio: 0.95,
+                childAspectRatio: 1.1,
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
               itemBuilder: (context, index) {
                 return CategoryCard(
-                  category: categoryList[index],
+                  category: HomePageViewModel.categoryList[index],
                 );
               },
             ),

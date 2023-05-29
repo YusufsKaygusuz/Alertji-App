@@ -4,7 +4,6 @@ import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewm
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingView extends StatefulWidget {
   const OnboardingView({super.key});

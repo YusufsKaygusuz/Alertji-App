@@ -19,8 +19,7 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     ScreenSize.init(context);
     return Container(
-      padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
-      height: ScreenSize.screenWidth / 3,
+      height: ScreenSize.screenWidth / 3.5,
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
@@ -38,23 +37,26 @@ class CustomAppBar extends StatelessWidget {
         ),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                text,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge
-                    ?.copyWith(color: ColorConst.backgroundColor),
-              ),
-              CircleButton(
-                icon: icon,
-                onPressed: onPressed,
-              ),
-            ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  text,
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: ColorConst.backgroundColor),
+                ),
+                CircleButton(
+                  icon: icon,
+                  onPressed: onPressed,
+                ),
+              ],
+            ),
           ),
         ],
       ),
