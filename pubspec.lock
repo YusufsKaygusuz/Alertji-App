@@ -268,10 +268,10 @@ packages:
     dependency: "direct main"
     description:
       name: go_router
-      sha256: b185cf91b5a6861f4c2a92ddaa65f8919909416ee033e00751f7c67ebee1588d
+      sha256: "00d1b67d6e9fa443331da229084dd3eb04407f5a2dff22940bd7bba6af5722c3"
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.2"
+    version: "7.1.1"
   google_fonts:
     dependency: "direct main"
     description:
@@ -279,16 +279,7 @@ packages:
       sha256: "6b6f10f0ce3c42f6552d1c70d2c28d764cf22bb487f50f66cca31dcd5194f4d6"
       url: "https://pub.dev"
     source: hosted
-
-    version: "9.2.0"
-  google_fonts:
-    dependency: "direct main"
-    description:
-      name: google_fonts
-      sha256: "6b6f10f0ce3c42f6552d1c70d2c28d764cf22bb487f50f66cca31dcd5194f4d6"
-      url: "https://pub.dev"
-    source: hosted
-   version: "4.0.4"
+    version: "4.0.4"
   google_identity_services_web:
     dependency: transitive
     description:
@@ -301,10 +292,10 @@ packages:
     dependency: "direct main"
     description:
       name: google_sign_in
-      sha256: c912e5dbdbf75c18427a6c77f866192fe2c0ae29e1a5ef12e9a1d9d93f69a9a3
+      sha256: bb882facf7efa69b825cb536cb395acc2b22702cca59597b4e928b23f5ef37c3
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.1"
+    version: "6.1.2"
   google_sign_in_android:
     dependency: transitive
     description:
@@ -333,10 +324,10 @@ packages:
     dependency: transitive
     description:
       name: google_sign_in_web
-      sha256: "7e0ec507f4752383a6daa67d0cc775253cfc3b1d87907e7004e2c1b99c0a723f"
+      sha256: "7b154bc84da4c6a578072fc53c0a68ce3168beb39fab8235657d17c18ea12924"
       url: "https://pub.dev"
     source: hosted
-    version: "0.12.0"
+    version: "0.12.0+1"
   http:
     dependency: transitive
     description:
@@ -416,18 +407,15 @@ packages:
       sha256: "6b0206b0bf4f04961fc5438198ccb3a885685cd67d4d4a32cc20ad7f8adbe015"
       url: "https://pub.dev"
     source: hosted
-
-    version: "2.0.1"
+    version: "2.1.0"
   logging:
     dependency: transitive
     description:
       name: logging
-      sha256: "04094f2eb032cbb06c6f6e8d3607edcfcb0455e2bb6cbc010cb01171dcb64e6d"
+      sha256: "623a88c9594aa774443aa3eb2d41807a48486b5613e67599fb4c41c0ad47c340"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
-
-
+    version: "1.2.0"
   matcher:
     dependency: transitive
     description:
@@ -701,10 +689,10 @@ packages:
     dependency: transitive
     description:
       name: url_launcher_android
-      sha256: "1a5848f598acc5b7d8f7c18b8cb834ab667e59a13edc3c93e9d09cf38cc6bc87"
+      sha256: eed4e6a1164aa9794409325c3b707ff424d4d1c2a785e7db67f8bbda00e36e51
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.34"
+    version: "6.0.35"
   url_launcher_ios:
     dependency: transitive
     description:

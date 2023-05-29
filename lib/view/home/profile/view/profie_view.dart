@@ -1,3 +1,4 @@
+import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/view/home/profile/viewmodel/body.dart';
 import 'package:flutter/material.dart';
 
@@ -42,7 +43,18 @@ class _ProfileViewState extends State<ProfileView> {
         title: const Text("Hesabım"),
         backgroundColor: Colors.green,
       ),
-      body: const Body(),
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                SizedBox(height: 580, child: CustomGradientClip()),
+                Body(),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -8,17 +8,13 @@ import '../view/profie_view.dart';
 class SupportPage extends StatelessWidget {
   final String supportEmail = 'alertjiapp@gmail.com';
 
-  const SupportPage({super.key});
-
   Future<void> _sendEmail() async {
     final Uri emailUri = Uri(
       scheme: 'mailto',
       path: supportEmail,
     );
 
-    // ignore: deprecated_member_use
     if (await canLaunch(emailUri.toString())) {
-      // ignore: deprecated_member_use
       await launch(emailUri.toString());
     } else {
       throw 'Could not launch email';
@@ -63,22 +59,29 @@ class SupportPage extends StatelessWidget {
               const CustomGradientClip(),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 40.0, vertical: 150),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Bize Ulaşın',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 16.0),
-                    const Text(
-                      'Herhangi bir soru, öneri veya geri bildiriminiz mi var? Bize e-posta gönderin.',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    const SizedBox(height: 100.0),
-                    GradientButton(onPressed: _sendEmail, text: 'Bize Ulaşın')
-                  ],
+                    const EdgeInsets.symmetric(horizontal: 40.0, vertical: 100),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                  child: Column(
+                    children: [
+                      const Text(
+                        'Bize Ulaşın',
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      const SizedBox(height: 16.0),
+                      const Text(
+                        'Herhangi bir soru, öneri veya geri bildiriminiz mi var? Bize e-posta',
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      const Text('gönderin.',
+                          style: TextStyle(fontSize: 18, color: Colors.white)),
+                      const SizedBox(height: 140.0),
+                      GradientButton(onPressed: _sendEmail, text: 'Bize Ulaşın')
+                    ],
+                  ),
                 ),
               )
             ],

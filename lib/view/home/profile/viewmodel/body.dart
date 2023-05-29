@@ -46,7 +46,7 @@ class _BodyState extends State<Body> {
             iconData: Icons.help_center,
             press: () {
               Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => const SupportPage()),
+                  MaterialPageRoute(builder: (context) => SupportPage()),
                   (Route<dynamic> route) => false);
             },
           ),

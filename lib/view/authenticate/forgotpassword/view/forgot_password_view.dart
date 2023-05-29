@@ -4,7 +4,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../../product/widget/draw_clip.dart';
 
-// ignore: must_be_immutable
 class ForgotPasswordPage extends StatelessWidget {
   ForgotPasswordPage({Key? key}) : super(key: key);
 
@@ -54,40 +53,42 @@ class ForgotPasswordPage extends StatelessWidget {
       appBar: const LoginAppBar(
         title: ("Şifremi Unuttum"),
       ),
-      body: Column(
-        children: [
-          Stack(children: [
-            const SizedBox(height: 240, child: CustomGradientClip()),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  const SizedBox(
-                    height: 200,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text(
-                      "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
-                      style: TextStyle(fontSize: 14),
-                      textAlign: TextAlign.center,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(children: [
+              const SizedBox(height: 240, child: CustomGradientClip()),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 200,
                     ),
-                  ),
-                  _textFieldWidget(mailController, "E-mail"),
-                  Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                    child: GradientButton(
-                        onPressed: () => {resetPassword(context)},
-                        text: "Gönder"),
-                  )
-                ],
+                    const Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Text(
+                        "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
+                        style: TextStyle(fontSize: 14),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    _textFieldWidget(mailController, "E-mail"),
+                    Container(
+                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                      child: GradientButton(
+                          onPressed: () => {resetPassword(context)},
+                          text: "Gönder"),
+                    )
+                  ],
+                ),
               ),
-            ),
-          ]),
-        ],
+            ]),
+          ],
+        ),
       ),
     );
   }
