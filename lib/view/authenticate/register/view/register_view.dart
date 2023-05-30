@@ -151,8 +151,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 60.0),
                     child: GradientButton(
-                        onPressed: () {
-                          if (_controllerName.text.isEmpty) {
+                        onPressed: () async {
+                          if (await _controllerName.text.isEmpty) {
                             AlertDialog alertName = AlertDialog(
                               title: const Text("Hata"),
                               content: const Text("İsim alanı boş bırakılamaz"),
@@ -166,30 +166,32 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               ],
                             );
+                            // ignore: use_build_context_synchronously
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
                                   return alertName;
                                 });
                           } else {
-                            if (Auth().validatePassword(
+                            if (await Auth().validatePassword(
                                     _controllerPassword.text,
                                     _controllerCheckPassword.text) ==
                                 true) {
-                              createUserWithEmailAndPassword();
-                              if (FirebaseAuth.instance.currentUser != null) {
-                                Auth().verifyEmail();
-                                Navigator.pushAndRemoveUntil(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const VerifyEmailPage()),
-                                    (route) => false);
-                                _controllerCheckPassword.clear();
-                                _controllerPassword.clear();
-                                _controllerEmail.clear();
-                                _controllerName.clear();
-                              }
+                              await createUserWithEmailAndPassword();
+                              //if (await FirebaseAuth.instance.currentUser != null) {
+                              Auth().verifyEmail();
+                              // ignore: use_build_context_synchronously
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const VerifyEmailPage()),
+                                  (route) => false);
+                              _controllerCheckPassword.clear();
+                              _controllerPassword.clear();
+                              _controllerEmail.clear();
+                              _controllerName.clear();
+                              //          }
                             } else {
                               AlertDialog alertPassword = AlertDialog(
                                 title: const Text("Hata"),
@@ -205,6 +207,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   ),
                                 ],
                               );
+                              // ignore: use_build_context_synchronously
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {

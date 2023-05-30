@@ -202,11 +202,11 @@ class _LoginPageState extends State<LoginPage> {
                                       (Route<dynamic> route) => false);
                                 } else {
                                   // ignore: use_build_context_synchronously
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const VerifyEmailPage()),
-                                  );
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const VerifyEmailPage()),
+                                      (Route<dynamic> route) => false);
                                 }
                               }
                             },
