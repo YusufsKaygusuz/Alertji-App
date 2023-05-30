@@ -132,6 +132,21 @@ class _RegisterPageState extends State<RegisterPage> {
                   isTopToBottom: true,
                 ),
               ),
+              const Padding(
+                padding: EdgeInsets.only(top: 40.0, left: 25),
+                child: Column(
+                  children: [
+                    Text(
+                      "Sağlıklı ve güvenli bir yaşam deneyimi için aramıza ",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    Text(
+                      " katılmaya hazır mısın?",
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(children: [

@@ -63,14 +63,25 @@ class ForgotPasswordPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
+                    const Padding(
+                      padding: EdgeInsets.only(top: 60.0, left: 20),
+                      child: Text(
+                        "Allertji App şifreni unuttuysan dert etme.",
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ),
+                    const Text(
+                      "Sana yardımcı olacağız.",
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
                     const SizedBox(
-                      height: 200,
+                      height: 110,
                     ),
                     const Padding(
                       padding: EdgeInsets.all(20.0),
                       child: Text(
                         "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
-                        style: TextStyle(fontSize: 14),
+                        style: TextStyle(fontSize: 16),
                         textAlign: TextAlign.center,
                       ),
                     ),
