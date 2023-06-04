@@ -37,25 +37,31 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   }
 
   Future<void> sendAgain() async {
-  User? user = FirebaseAuth.instance.currentUser;
-  if (user != null) {
-    await user.sendEmailVerification();
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+    await currentUser.reload();
+    }
   }
-}
 
-  Future checkEmailVerified() async {
-    await FirebaseAuth.instance.currentUser!.reload();
+  Future<void> checkEmailVerified() async {
+  User? currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser != null) {
+    await currentUser.reload();
+    bool isVerified = currentUser.emailVerified;
     setState(() {
-      isVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+      isVerified = isVerified;
     });
     if (isVerified) {
       timer?.cancel();
       // ignore: use_build_context_synchronously
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const NavigationView()),
-          (Route<dynamic> route) => false);
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const NavigationView()),
+        (Route<dynamic> route) => false,
+      );
     }
   }
+}
 
   @override
   Widget build(BuildContext context) {
@@ -66,40 +72,48 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
             children: [
               const CustomGradientClip(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 150),
-                child: Column(children: [
-                  const Text(
-                    "Email doğrulaması e-mail hesabınıza gönderilmiştir. Lütfen e-mail doğrulamanızı yapınız.",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 150),
+                child: Column(
+                  children: [
+                    const Text(
+                      "Email doğrulaması e-mail hesabınıza gönderilmiştir. Lütfen e-mail doğrulamanızı yapınız.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 100),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GradientButton(
-                        onPressed: () {
-                          sendAgain();
-                        },
-                        text: "Tekrar e-mail gönder"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: GradientButton(
-                      onPressed: () {
-                        Auth().signOut();
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (context) => const LoginPage()),
-                            (Route<dynamic> route) => false);
-                      },
-                      text: "Geri dön ve çıkış yap",
+                    const SizedBox(height: 100),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          GradientButton(
+                            onPressed: () {
+                              sendAgain();
+                            },
+                            text: "Tekrar e-mail gönder",
+                          ),
+                          const SizedBox(height: 12),
+                          GradientButton(
+                            onPressed: () {
+                              Auth().signOut();
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const LoginPage()),
+                                (Route<dynamic> route) => false,
+                              );
+                            },
+                            text: "Geri dön ve çıkış yap",
+                          ),
+                        ],
+                      ),
                     ),
-                  )
-                ]),
-              )
+                  ],
+                ),
+              ),
             ],
           ),
         ],
