@@ -231,7 +231,6 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         onTap: () {
-                          //Google auth kodları buraya yazılacak
                         },
                       ),
                     ],
