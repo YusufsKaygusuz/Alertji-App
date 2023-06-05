@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 class LoginAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-
-  //const LoginAppBar({required this.title});
   const LoginAppBar({super.key, required this.title});
 
   @override
