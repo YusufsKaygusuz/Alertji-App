@@ -5,7 +5,8 @@ import 'package:alertji_app/product/model/category_model.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
-  const CategoryCard({super.key, required this.category});
+
+  const CategoryCard({Key? key, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +22,17 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-            color: ColorConst.backgroundColor,
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 4.0,
-                spreadRadius: .05,
-              ),
-            ]),
+          color: ColorConst.backgroundColor,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8.0,
+            spreadRadius: 1.0,
+            offset: const Offset(0, 2),
+            ),
+          ],
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
