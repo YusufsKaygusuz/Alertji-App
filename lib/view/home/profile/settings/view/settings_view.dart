@@ -1,6 +1,5 @@
 import 'package:alertji_app/view/home/profile/view/profie_view.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../product/widget/draw_clip.dart';
 
 class SettingsPage extends StatefulWidget {
