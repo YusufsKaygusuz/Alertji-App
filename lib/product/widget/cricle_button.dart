@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
   final IconData icon;
-  final GestureTapCallback onPressed;
-  const CircleButton({Key? key, required this.icon, required this.onPressed})
-      : super(key: key);
+  final VoidCallback onPressed;
+
+  const CircleButton({
+    Key? key,
+    required this.icon,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +20,12 @@ class CircleButton extends StatelessWidget {
         shape: BoxShape.circle,
         color: ColorConst.primaryShadow,
       ),
-      child: Center(
-        child: IconButton(
-          icon: Icon(
-            icon,
-            color: Colors.white,
-          ),
-          onPressed: onPressed,
+      child: IconButton(
+        icon: Icon(
+          icon,
+          color: Colors.white,
         ),
+        onPressed: onPressed,
       ),
     );
   }
