@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         routes: {
           'login': (context) =>
               initScreen == 0 ? const OnboardingView() : const LoginPage(),
-          'home': (context) => const NavigationView(),
+          'home': (context) => NavigationView(),
         },
         //home: FirebaseAuth.instance.currentUser != null ? NavigationView() : LoginPage(),
       ),

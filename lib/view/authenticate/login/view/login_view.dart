@@ -198,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              const NavigationView()),
+                                              NavigationView()),
                                       (Route<dynamic> route) => false);
                                 } else {
                                   // ignore: use_build_context_synchronously
@@ -230,8 +230,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: 50,
                           ),
                         ),
-                        onTap: () {
-                        },
+                        onTap: () {},
                       ),
                     ],
                   ),
