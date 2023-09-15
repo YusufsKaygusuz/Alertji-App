@@ -153,7 +153,7 @@ class LoginPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const NavigationView()),
+                      builder: (context) =>  NavigationView()),
                 );
               });
               return const Scaffold(

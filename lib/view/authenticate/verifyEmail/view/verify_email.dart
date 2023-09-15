@@ -39,29 +39,29 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
   Future<void> sendAgain() async {
     User? currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
-    await currentUser.reload();
+      await currentUser.reload();
     }
   }
 
   Future<void> checkEmailVerified() async {
-  User? currentUser = FirebaseAuth.instance.currentUser;
-  if (currentUser != null) {
-    await currentUser.reload();
-    bool isVerified = currentUser.emailVerified;
-    setState(() {
-      isVerified = isVerified;
-    });
-    if (isVerified) {
-      timer?.cancel();
-      // ignore: use_build_context_synchronously
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const NavigationView()),
-        (Route<dynamic> route) => false,
-      );
+    User? currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser != null) {
+      await currentUser.reload();
+      bool isVerified = currentUser.emailVerified;
+      setState(() {
+        isVerified = isVerified;
+      });
+      if (isVerified) {
+        timer?.cancel();
+        // ignore: use_build_context_synchronously
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => NavigationView()),
+          (Route<dynamic> route) => false,
+        );
+      }
     }
   }
-}
 
   @override
   Widget build(BuildContext context) {
