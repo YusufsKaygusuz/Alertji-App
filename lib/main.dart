@@ -1,19 +1,18 @@
-
-import 'package:alertji_app/product/widget/allergen_listview.dart';
+import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
+import 'package:alertji_app/view/authenticate/onboard/bloc/onboard_cubit.dart';
 import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart';
-import 'package:alertji_app/view/authenticate/onboard/viewModel/onboarding_viewmodel.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'view/home/allergenspage/viewmodel/allergens_viewmodel.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 int? initScreen;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  initScreen = await OnboardingCubit().checkOnboardingStatus();
   runApp(const MyApp());
 }
 
@@ -22,13 +21,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (context) => AllergensViewModel(),
-          child: AllergensListView(key: key),
+        BlocProvider<OnboardingCubit>(
+          create: (context) => OnboardingCubit(),
         ),
-        ChangeNotifierProvider(create: (_) => OnboardingViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -40,7 +37,8 @@ class MyApp extends StatelessWidget {
         initialRoute:
             FirebaseAuth.instance.currentUser != null ? 'home' : 'login',
         routes: {
-          'login': (context) => const OnboardingView(),
+          'login': (context) =>
+              initScreen == 0 ? const OnboardingView() : const LoginPage(),
           'home': (context) => const NavigationView(),
         },
         //home: FirebaseAuth.instance.currentUser != null ? NavigationView() : LoginPage(),
