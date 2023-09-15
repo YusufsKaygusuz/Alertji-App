@@ -6,12 +6,16 @@ class Auth {
   User? get currentUser => _firebaseAuth.currentUser;
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<void> signInWithEmailAndPassword({
+  Future<bool> signInWithEmailAndPassword({
     required String email,
     required String password,
   }) async {
-    await _firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+    try {
+    await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+    return true;
+  } catch (e) {
+    return false;
+  }
   }
 
   Future<void> createUserWithEmailAndPassword({

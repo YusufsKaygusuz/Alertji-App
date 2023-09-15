@@ -49,7 +49,7 @@ class _BodyState extends State<Body> {
       'route': () {
         Auth().signOut();
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const LoginPage()),
+            MaterialPageRoute(builder: (context) =>  LoginPage()),
             (Route<dynamic> route) => false);
       },
     },

@@ -21,7 +21,7 @@ class _NavigationViewState extends NavigationViewModel {
       Future(() {
         FirebaseAuth.instance.signOut();
         Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => const LoginPage()),
+            MaterialPageRoute(builder: (context) => LoginPage()),
             (Route<dynamic> route) => false);
       });
     }

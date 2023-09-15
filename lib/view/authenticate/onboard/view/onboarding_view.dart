@@ -29,7 +29,7 @@ class OnboardingView extends StatelessWidget {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginPage()));
+                                  builder: (context) => LoginPage()));
                         },
                         buttonText: "Atla")),
                 const SizedBox(height: 20),
@@ -50,7 +50,7 @@ class OnboardingView extends StatelessWidget {
                         onDone: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage())),
+                                builder: (context) =>  LoginPage())),
                         onSkip: () => onboardingCubit.nextPage(),
                         isBottomSafeArea: false,
                         globalBackgroundColor: Colors.white,

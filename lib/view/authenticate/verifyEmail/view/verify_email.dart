@@ -102,7 +102,7 @@ class _VerifyEmailPageState extends State<VerifyEmailPage> {
                               Auth().signOut();
                               Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => const LoginPage()),
+                                    builder: (context) =>  LoginPage()),
                                 (Route<dynamic> route) => false,
                               );
                             },
