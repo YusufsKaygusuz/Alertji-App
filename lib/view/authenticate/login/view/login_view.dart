@@ -50,9 +50,7 @@ class LoginPage extends StatelessWidget {
       create: (context) => LoginCubit(),
       child: Scaffold(
           body: BlocConsumer<LoginCubit, LoginState>(
-        listener: ((context, state) {
-          
-        }),
+        listener: ((context, state) {}),
         builder: (context, state) {
           if (state is LoginInitialState) {
             return Scaffold(
@@ -146,14 +144,15 @@ class LoginPage extends StatelessWidget {
               ),
             );
           } else if (state is LoginLoadingState) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(
+                child:
+                    CircularProgressIndicator(color: ColorConst.primaryColor));
           } else if (state is LoginCompletedState) {
             if (state.isLoggedin == true) {
               Future.delayed(const Duration(seconds: 3), () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) =>  NavigationView()),
+                  MaterialPageRoute(builder: (context) => NavigationView()),
                 );
               });
               return const Scaffold(
@@ -179,7 +178,7 @@ class LoginPage extends StatelessWidget {
                 (Route<dynamic> route) => false);
             return const Scaffold(
               body: Center(
-                child: CircularProgressIndicator(), // Örnek: Yüklenme çemberi
+                child: CircularProgressIndicator(),
               ),
             );
           }
