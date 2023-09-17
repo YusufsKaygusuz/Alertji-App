@@ -149,16 +149,29 @@ class LoginPage extends StatelessWidget {
                     CircularProgressIndicator(color: ColorConst.primaryColor));
           } else if (state is LoginCompletedState) {
             if (state.isLoggedin == true) {
-              Future.delayed(const Duration(seconds: 3), () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NavigationView()),
+              if (Auth().verifyEmail() == true) {
+                Future.delayed(const Duration(seconds: 3), () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NavigationView()),
+                  );
+                });
+                return const Scaffold(
+                  body: Center(
+                      child: Text("Başarılı giriş, yönlendiriliyorsunuz...")),
                 );
-              });
-              return const Scaffold(
-                body: Center(
-                    child: Text("Başarılı giriş, yönlendiriliyorsunuz...")),
-              );
+              } else {
+                Future.delayed(const Duration(seconds: 3), () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => VerifyEmailPage()),
+                  );
+                });
+                return const Scaffold(
+                  body: Center(
+                      child: Text("Başarılı giriş, yönlendiriliyorsunuz...")),
+                );
+              }
             } else {
               Future.delayed(const Duration(seconds: 3), () {
                 Navigator.push(
