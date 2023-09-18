@@ -200,7 +200,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const VerifyEmailPage()),
+                                           VerifyEmailPage()),
                                   (route) => false);
                               _controllerCheckPassword.clear();
                               _controllerPassword.clear();
