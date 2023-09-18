@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifyEmailPage extends StatelessWidget {
+  const VerifyEmailPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -20,9 +22,9 @@ class VerifyEmailPage extends StatelessWidget {
         listener: (context, state) {
           if (state is VerifyEmailInitialState) {
             if (state.isVerified == true) {
-              Navigator.push(
-                context,
+              Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(builder: (context) => NavigationView()),
+                (Route<dynamic> route) => false,
               );
             } else {
               // Navigator.push(
@@ -109,7 +111,7 @@ class VerifyEmailPage extends StatelessWidget {
           //     return const Center(
           //         child: CircularProgressIndicator(color: Colors.blue));
           //   }
-          // } 
+          // }
           else {
             return const Center(
               child: Text("Yükleme Başarısız"),
@@ -120,23 +122,6 @@ class VerifyEmailPage extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // class VerifyEmailPage extends StatefulWidget {
 //   const VerifyEmailPage({super.key});
