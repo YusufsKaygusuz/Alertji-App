@@ -2,7 +2,7 @@ import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../view/profie_view.dart';
+import '../../view/profie_view.dart';
 
 class SupportPage extends StatelessWidget {
   final String supportEmail = 'alertjiapp@gmail.com';
@@ -62,7 +62,8 @@ class SupportPage extends StatelessWidget {
             children: [
               const CustomGradientClip(),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 100),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40.0, vertical: 100),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: Column(
