@@ -1,30 +1,12 @@
-import 'package:alertji_app/product/widget/login_appbar.dart';
-import 'package:alertji_app/product/widget/login_button.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../product/widget/draw_clip.dart';
+import '../../../../product/widget/login_appbar.dart';
+import '../../../../product/widget/login_button.dart';
+import '../bloc/forgot_password_cubit.dart';
 
-// ignore: must_be_immutable
 class ForgotPasswordPage extends StatelessWidget {
-  ForgotPasswordPage({Key? key}) : super(key: key);
-
-  TextEditingController mailController = TextEditingController();
-
-  Future resetPassword(BuildContext context) async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: mailController.text.trim());
-    } on FirebaseAuthException catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              content: Text(e.message.toString()),
-            );
-          });
-    }
-  }
-
+  final TextEditingController mailController = TextEditingController();
   Widget _textFieldWidget(TextEditingController controller, String hintTitle) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 35),
@@ -54,52 +36,67 @@ class ForgotPasswordPage extends StatelessWidget {
       appBar: const LoginAppBar(
         title: ("Şifremi Unuttum"),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Stack(children: [
-              const SizedBox(height: 240, child: CustomGradientClip()),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(top: 60.0, left: 20),
-                      child: Text(
-                        "Allertji App şifreni unuttuysan dert etme.",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                    ),
-                    const Text(
-                      "Sana yardımcı olacağız.",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 110,
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(20.0),
-                      child: Text(
-                        "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
-                        style: TextStyle(fontSize: 16),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    _textFieldWidget(mailController, "E-mail"),
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                    ),
+      body: BlocProvider(
+        create: (context) => ForgotPasswordCubit(),
+        child: BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
+          builder: (context, state) {
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(children: [
+                    const SizedBox(height: 240, child: CustomGradientClip()),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 80.0),
-                      child: GradientButton(
-                          onPressed: () => {resetPassword(context)},
-                          text: "Gönder"),
-                    )
-                  ],
-                ),
+                      padding: const EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 60.0, left: 20),
+                            child: Text(
+                              "Allertji App şifreni unuttuysan dert etme.",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 18),
+                            ),
+                          ),
+                          const Text(
+                            "Sana yardımcı olacağız.",
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                          const SizedBox(
+                            height: 110,
+                          ),
+                          const Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Text(
+                              "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
+                              style: TextStyle(fontSize: 16),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          _textFieldWidget(mailController, "E-mail"),
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 80.0),
+                            child: GradientButton(
+                              onPressed: () {
+                                context
+                                    .read<ForgotPasswordCubit>()
+                                    .resetPassword(mailController.text.trim()
+                                        as BuildContext);
+                              },
+                              text: "Gönder",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+                ],
               ),
-            ]),
-          ],
+            );
+          },
         ),
       ),
     );
