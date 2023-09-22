@@ -1,5 +1,3 @@
-import 'dart:async';
-import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/product/widget/draw_clip.dart';
 import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/login/service/auth.dart';

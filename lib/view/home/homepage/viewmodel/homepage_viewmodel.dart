@@ -1,9 +1,10 @@
 import 'package:alertji_app/product/model/sub_category_model.dart';
-import 'package:alertji_app/view/home/homepage/view/homepage_view.dart';
-import 'package:flutter/material.dart';
-import 'package:alertji_app/product/model/category_model.dart';
 
-abstract class HomePageViewModel extends State<HomePageView> {
+import 'package:alertji_app/product/model/category_model.dart';
+//import 'package:alertji_app/view/home/homepage/view/homepage_view.dart';
+//import 'package:flutter/material.dart';
+
+class HomePageViewModel {
   static List<Category> categoryList = [
     Category(
       categoryId: 1,

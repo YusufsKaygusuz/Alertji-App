@@ -1,6 +1,8 @@
 import 'package:alertji_app/view/authenticate/login/view/login_view.dart';
 import 'package:alertji_app/view/authenticate/onboard/bloc/onboard_cubit.dart';
 import 'package:alertji_app/view/authenticate/onboard/view/onboarding_view.dart';
+import 'package:alertji_app/view/home/homepage/bloc/homepage_cubit.dart';
+import 'package:alertji_app/view/home/homepage/view/homepage_view.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,6 +15,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   initScreen = await OnboardingCubit().checkOnboardingStatus();
+
   runApp(const MyApp());
 }
 
@@ -25,6 +28,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<OnboardingCubit>(
           create: (context) => OnboardingCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomePageCubit(),
+          child: const HomePageView(),
         ),
       ],
       child: MaterialApp(

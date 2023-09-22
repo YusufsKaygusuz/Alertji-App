@@ -1,61 +1,80 @@
-import 'package:alertji_app/product/model/category_model.dart';
 import 'package:alertji_app/product/widget/category_card.dart';
 import 'package:alertji_app/product/widget/custom_appbar.dart';
-import 'package:alertji_app/view/home/homepage/viewmodel/homepage_viewmodel.dart';
+import 'package:alertji_app/view/home/homepage/bloc/homepage_cubit.dart';
+import 'package:alertji_app/view/home/homepage/bloc/homepage_state.dart';
+import 'package:alertji_app/view/home/homepage/categories_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomePageView extends StatefulWidget {
-  const HomePageView({Key? key}) : super(key: key);
+class HomePageView extends StatelessWidget {
+  const HomePageView({super.key});
 
-  @override
-  State<HomePageView> createState() => _HomePageViewState();
-}
-
-class _HomePageViewState extends HomePageViewModel {
-  late Category selectedCategory;
-  String userName = FirebaseAuth.instance.currentUser!.displayName ?? 'name';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(
-            icon: Icons.notifications,
-            onPressed: () {},
-
-            text: 'Welcome, $userName',
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Explore Categories",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: GridView.builder(
-              itemCount: HomePageViewModel.categoryList.length,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.1,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-              ),
-              itemBuilder: (context, index) {
-                return CategoryCard(
-                  category: HomePageViewModel.categoryList[index],
-                );
-              },
-            ),
-          ),
-        ],
+    final user = FirebaseAuth.instance.currentUser;
+    final CategoriesRepository repo = CategoriesRepository();
+    return BlocProvider(
+      create: (context) => HomePageCubit(),
+      child: Scaffold(
+        body: BlocConsumer<HomePageCubit, HomePageState>(
+          listener: ((context, state) {}),
+          builder: (context, state) {
+            if (state is HomePageInitial) {
+              context.read<HomePageCubit>().initializeData(
+                    user!.displayName!,
+                    repo.getCategories(),
+                  );
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is HomePageLoaded) {
+              return Column(
+                children: [
+                  CustomAppBar(
+                    icon: Icons.notifications,
+                    onPressed: () {},
+                    text: 'Welcome, ${state.userName}',
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Explore Categories",
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: GridView.builder(
+                      itemCount: state.categoryList.length,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 8),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.1,
+                        crossAxisSpacing: 20,
+                        mainAxisSpacing: 20,
+                      ),
+                      itemBuilder: (context, index) {
+                        return CategoryCard(
+                          category: state.categoryList[index],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }

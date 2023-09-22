@@ -2,8 +2,6 @@
 
 import 'package:alertji_app/view/authenticate/login/bloc/login_state.dart';
 import 'package:alertji_app/view/authenticate/login/service/auth.dart';
-import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -11,7 +9,10 @@ class LoginCubit extends Cubit<LoginState> {
   Auth auth = Auth();
   bool isLoggedIn = false;
 
-  Future<void> logIn({required String email,required String password,}) async {
+  Future<void> logIn({
+    required String email,
+    required String password,
+  }) async {
     try {
       //emit(LoginInitialState());
       emit(LoginLoadingState());

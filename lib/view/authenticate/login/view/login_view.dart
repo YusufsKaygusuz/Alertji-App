@@ -8,7 +8,6 @@ import 'package:alertji_app/view/authenticate/login/bloc/login_cubit.dart';
 import 'package:alertji_app/view/authenticate/login/bloc/login_state.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
-import 'package:alertji_app/view/home/profile/settings/view/settings_view.dart';
 import 'package:alertji_app/widgets/auth/appIcon_widget.dart';
 import 'package:alertji_app/widgets/auth/signUp_widget.dart';
 import 'package:alertji_app/widgets/auth/textField_widget.dart';
