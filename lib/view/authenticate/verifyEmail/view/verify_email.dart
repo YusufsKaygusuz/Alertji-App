@@ -13,17 +13,20 @@ class VerifyEmailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isProceed = true;
     return BlocProvider(
       create: (context) => VerifyEmailCubit(),
       child: Scaffold(
           body: BlocConsumer<VerifyEmailCubit, VerifyEmailState>(
         listener: (context, state) {
           if (state is VerifyEmailInitialState) {
-            if (state.isVerified == true) {
-              Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => NavigationView()),
-                (Route<dynamic> route) => false,
-              );
+            if (state.isVerified == true && isProceed==true) {
+                isProceed=false;
+                Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => NavigationView()),
+                  (Route<dynamic> route) => false,
+                );
+             
             } else {
               // Navigator.push(
               //   context,
