@@ -1,7 +1,10 @@
 import 'package:alertji_app/product/widget/login_button.dart';
+import 'package:alertji_app/view/authenticate/register/bloc/register_cubit.dart';
+import 'package:alertji_app/view/authenticate/register/bloc/register_state.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 //import '../../onboard/view/onboarding_view.dart';
 // import '../../../home/homepage/view/homepage_view.dart';
 // import '../../profie/view/profile_view.dart';
@@ -100,143 +103,150 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: const Text("Kayıt Ol"),
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color.fromARGB(255, 152, 236, 143),
-                Color.fromARGB(255, 71, 229, 166),
-                Color.fromARGB(255, 65, 200, 146),
-              ],
-              stops: [0.0, 0.5, 1.0],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              tileMode: TileMode.clamp,
-            ),
-          ),
-        ),
-      ),
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Stack(children: [
-              const SizedBox(
-                height: 150,
-                child: CustomGradientClip(
-                  isTopToBottom: true,
+    return BlocProvider(
+      create: (context) => RegisterCubit(),
+      child: Scaffold(
+        body: BlocConsumer<RegisterCubit, RegisterState>(
+          listener: (context, state) {},
+          builder: (context, state) {
+            return Scaffold(
+              appBar: AppBar(
+                elevation: 0,
+                title: const Text("Kayıt Ol"),
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 152, 236, 143),
+                        Color.fromARGB(255, 71, 229, 166),
+                        Color.fromARGB(255, 65, 200, 146),
+                      ],
+                      stops: [0.0, 0.5, 1.0],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      tileMode: TileMode.clamp,
+                    ),
+                  ),
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(top: 40.0, left: 25),
-                child: Column(
-                  children: [
-                    Text(
-                      "Sağlıklı ve güvenli bir yaşam deneyimi için aramıza ",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                    Text(
-                      " katılmaya hazır mısın?",
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  ],
+              body: SizedBox(
+                height: double.infinity,
+                width: double.infinity,
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    Stack(children: [
+                      const SizedBox(
+                        height: 150,
+                        child: CustomGradientClip(
+                          isTopToBottom: true,
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 40.0, left: 25),
+                        child: Column(
+                          children: [
+                            Text(
+                              "Sağlıklı ve güvenli bir yaşam deneyimi için aramıza ",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                            Text(
+                              " katılmaya hazır mısın?",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30),
+                        child: Column(children: [
+                          const SizedBox(
+                            height: 150,
+                          ),
+                          _textFieldWidget(_controllerName, "İsim", false,
+                              icon: Icons.person),
+                          _textFieldWidget(_controllerEmail, "E-mail", false,
+                              icon: Icons.mail),
+                          _textFieldWidget(_controllerPassword, "Şifre", true,
+                              icon: Icons.lock),
+                          _textFieldWidget(
+                              _controllerCheckPassword, "Şifre Tekrarı", true,
+                              icon: Icons.lock),
+                          _errorMesage(),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 60.0),
+                            child: GradientButton(
+                                onPressed: () async {
+                                  if (_controllerName.text.isEmpty) {
+                                    AlertDialog alertName = AlertDialog(
+                                      title: const Text("Hata"),
+                                      content: const Text(
+                                          "İsim alanı boş bırakılamaz"),
+                                      actions: [
+                                        TextButton(
+                                          child: const Text("Tamam"),
+                                          onPressed: () {
+                                            Navigator.pop(context!);
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                    showDialog(
+                                        context: context!,
+                                        builder: (BuildContext context) {
+                                          return alertName;
+                                        });
+                                  } else {
+                                    if (await Auth().validatePassword(
+                                            _controllerPassword.text,
+                                            _controllerCheckPassword.text) ==
+                                        true) {
+                                      await createUserWithEmailAndPassword();
+                                      Auth().verifyEmail();
+                                      Navigator.pushAndRemoveUntil(
+                                          context!,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VerifyEmailPage()),
+                                          (route) => false);
+                                      _controllerCheckPassword.clear();
+                                      _controllerPassword.clear();
+                                      _controllerEmail.clear();
+                                      _controllerName.clear();
+                                    } else {
+                                      AlertDialog alertPassword = AlertDialog(
+                                        title: const Text("Hata"),
+                                        content: const Text(
+                                            "Girdiğiniz şifreler uyuşmuyor veya şifre alanı boş bırakılamaz"),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text("Tamam"),
+                                            onPressed: () {
+                                              Navigator.pop(context!);
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                      showDialog(
+                                          context: context!,
+                                          builder: (BuildContext context) {
+                                            return alertPassword;
+                                          });
+                                    }
+                                  }
+                                },
+                                text: "Kayıt Ol"),
+                          ),
+                        ]),
+                      ),
+                    ]),
+                  ]),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(children: [
-                  const SizedBox(
-                    height: 150,
-                  ),
-                  _textFieldWidget(_controllerName, "İsim", false,
-                      icon: Icons.person),
-                  _textFieldWidget(_controllerEmail, "E-mail", false,
-                      icon: Icons.mail),
-                  _textFieldWidget(_controllerPassword, "Şifre", true,
-                      icon: Icons.lock),
-                  _textFieldWidget(
-                      _controllerCheckPassword, "Şifre Tekrarı", true,
-                      icon: Icons.lock),
-                  _errorMesage(), // Hata mesajını görüntüler veya boş bir metin döndürür
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 60.0),
-                    child: GradientButton(
-                        onPressed: () async {
-                          if (await _controllerName.text.isEmpty) {
-                            AlertDialog alertName = AlertDialog(
-                              title: const Text("Hata"),
-                              content: const Text("İsim alanı boş bırakılamaz"),
-                              actions: [
-                                TextButton(
-                                  child: const Text("Tamam"),
-                                  onPressed: () {
-                                    Navigator.pop(
-                                        context); // AlertDialog'u kapat
-                                  },
-                                ),
-                              ],
-                            );
-                            // ignore: use_build_context_synchronously
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return alertName;
-                                });
-                          } else {
-                            if (await Auth().validatePassword(
-                                    _controllerPassword.text,
-                                    _controllerCheckPassword.text) ==
-                                true) {
-                              await createUserWithEmailAndPassword();
-                              //if (await FirebaseAuth.instance.currentUser != null) {
-                              Auth().verifyEmail();
-                              // ignore: use_build_context_synchronously
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                           VerifyEmailPage()),
-                                  (route) => false);
-                              _controllerCheckPassword.clear();
-                              _controllerPassword.clear();
-                              _controllerEmail.clear();
-                              _controllerName.clear();
-                              //          }
-                            } else {
-                              AlertDialog alertPassword = AlertDialog(
-                                title: const Text("Hata"),
-                                content: const Text(
-                                    "Girdiğiniz şifreler uyuşmuyor veya şifre alanı boş bırakılamaz"),
-                                actions: [
-                                  TextButton(
-                                    child: const Text("Tamam"),
-                                    onPressed: () {
-                                      Navigator.pop(
-                                          context); // AlertDialog'u kapat
-                                    },
-                                  ),
-                                ],
-                              );
-                              // ignore: use_build_context_synchronously
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return alertPassword;
-                                  });
-                            }
-                          }
-                        },
-                        text: "Kayıt Ol"),
-                  ),
-                ]),
-              ),
-            ]),
-          ]),
+            );
+          },
         ),
       ),
     );

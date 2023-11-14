@@ -22,7 +22,7 @@ class Auth {
   }
 
   // E-posta ve şifre ile kullanıcı oluşturmayı sağlayan işlev
-  Future<void> createUserWithEmailAndPassword({
+  Future<bool> createUserWithEmailAndPassword({
     required String name,
     required String email,
     required String password,
@@ -31,6 +31,7 @@ class Auth {
         email: email, password: password);
     //_fireStore.collection('Users').doc(currentUser!.uid).update();
     await currentUser!.updateDisplayName(name);
+    return true;
   }
 
   // Kullanıcıyı oturumdan çıkarmayı sağlayan işlev
@@ -52,9 +53,10 @@ class Auth {
       return false;
     }
   }
+
   // Email onaylaması yapılıyor
-  void verifyEmail(){
-    User? user =FirebaseAuth.instance.currentUser;
-    user!.sendEmailVerification(); 
+  void verifyEmail() {
+    User? user = FirebaseAuth.instance.currentUser;
+    user!.sendEmailVerification();
   }
 }
