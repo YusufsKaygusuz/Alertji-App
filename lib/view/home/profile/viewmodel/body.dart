@@ -30,7 +30,7 @@ class _BodyState extends State<Body> {
           'iconData': Icons.settings,
           'route': () {
             Navigator.of(context).pushAndRemoveUntil(
-                MaterialPageRoute(builder: (context) => const SettingsPage()),
+                MaterialPageRoute(builder: (context) => SettingsPage()),
                 (Route<dynamic> route) => false);
           },
         },
