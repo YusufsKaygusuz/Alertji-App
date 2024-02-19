@@ -1,19 +1,13 @@
 abstract class ForgotPasswordState {}
 
-class ForgotPasswordInitialState extends ForgotPasswordState {
-  ForgotPasswordInitialState();
-}
+class ForgotPasswordInitial extends ForgotPasswordState {}
 
-class ForgotPasswordLoadingState extends ForgotPasswordState {
-  ForgotPasswordLoadingState();
-}
+class ForgotPasswordLoading extends ForgotPasswordState {}
 
-class ForgotPasswordCompeletedState extends ForgotPasswordState {
-  bool isSent;
-  ForgotPasswordCompeletedState(this.isSent);
-}
+class ForgotPasswordSuccess extends ForgotPasswordState {}
 
-class ForgotPasswordErrorState extends ForgotPasswordState {
-  final String errorMessage;
-  ForgotPasswordErrorState(this.errorMessage);
+class ForgotPasswordFailure extends ForgotPasswordState {
+  final String error;
+
+  ForgotPasswordFailure(this.error);
 }
