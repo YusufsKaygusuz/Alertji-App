@@ -6,11 +6,14 @@ import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/forgotpassword/view/forgot_password_view.dart';
 import 'package:alertji_app/view/authenticate/login/bloc/login_cubit.dart';
 import 'package:alertji_app/view/authenticate/login/bloc/login_state.dart';
+import 'package:alertji_app/view/authenticate/login/service/auth_google.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
+import 'package:alertji_app/view/home/homepage/view/homepage_view.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:alertji_app/widgets/auth/appIcon_widget.dart';
 import 'package:alertji_app/widgets/auth/signUp_widget.dart';
 import 'package:alertji_app/widgets/auth/textField_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../service/auth.dart';
@@ -132,7 +135,28 @@ class LoginPage extends StatelessWidget {
                                     width: 50,
                                   ),
                                 ),
-                                onTap: () {},
+                                onTap: () async {
+                                  AuthGoogle authGoogle = AuthGoogle();
+                                  try {
+                                    UserCredential? userCredential =
+                                        await authGoogle.signInWithGoogle();
+                                    if (userCredential != null) {
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                HomePageView()),
+                                      );
+                                    } else {
+                                      print("Google ile giriş yapılamadı.");
+                                      // Gerekli hata işlemlerini yapabilirsiniz
+                                    }
+                                  } catch (e) {
+                                    print(
+                                        "Google ile oturum açma başarısız oldu: $e");
+                                    // Hata durumunda yapılacak işlemler buraya gelebilir
+                                  }
+                                },
                               ),
                             ],
                           ),

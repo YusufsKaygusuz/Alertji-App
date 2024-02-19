@@ -1,8 +1,10 @@
+import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/product/widget/category_card.dart';
 import 'package:alertji_app/product/widget/custom_appbar.dart';
 import 'package:alertji_app/view/home/homepage/bloc/homepage_cubit.dart';
 import 'package:alertji_app/view/home/homepage/bloc/homepage_state.dart';
 import 'package:alertji_app/view/home/homepage/categories_repository.dart';
+import 'package:alertji_app/view/home/homepage/view/qrpage_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,6 +19,16 @@ class HomePageView extends StatelessWidget {
     return BlocProvider(
       create: (context) => HomePageCubit(),
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+         backgroundColor: ColorConst.primaryColor,
+          onPressed: () {
+            Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => QRScannerPage()),
+    );
+          },
+          child: Icon(Icons.qr_code_scanner_rounded), // FAB içeriği, genellikle bir ikon olur
+        ),
         body: BlocConsumer<HomePageCubit, HomePageState>(
           listener: ((context, state) {}),
           builder: (context, state) {
@@ -51,7 +63,7 @@ class HomePageView extends StatelessWidget {
                     child: GridView.builder(
                       itemCount: state.categoryList.length,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 8),
+                          horizontal: 10, vertical: 8),
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
