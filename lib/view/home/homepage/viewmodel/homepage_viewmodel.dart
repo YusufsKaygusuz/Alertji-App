@@ -8,12 +8,12 @@ class HomePageViewModel {
   static List<Category> categoryList = [
     Category(
       categoryId: 1,
-      name: 'Food',
-      thumbnail: 'assets/images/foods.jpg',
+      name: 'Vegetable',
+      thumbnail: 'assets/images/fruits.jpg',
     ),
     Category(
       categoryId: 2,
-      name: 'Vegetable and Fruit',
+      name: 'Fruit',
       thumbnail: 'assets/images/fruits.jpg',
     ),
     Category(
@@ -29,22 +29,22 @@ class HomePageViewModel {
     Category(
       categoryId: 5,
       name: 'Meat and Chicken',
-      thumbnail: 'assets/images/spice.jpg',
+      thumbnail: 'assets/images/meatandchicken.jpg',
     ),
     Category(
       categoryId: 6,
       name: 'Bread and Patisserie',
-      thumbnail: 'assets/images/spice.jpg',
+      thumbnail: 'assets/images/bread.jpg',
     ),
     Category(
       categoryId: 7,
       name: 'Seafood',
-      thumbnail: 'assets/images/spice.jpg',
+      thumbnail: 'assets/images/seafood.jpg',
     ),
     Category(
       categoryId: 8,
       name: 'Legumes',
-      thumbnail: 'assets/images/spice.jpg',
+      thumbnail: 'assets/images/legumes.jpg',
     ),
   ];
   static List<SubCategory> allSelectedSubCategories = [];

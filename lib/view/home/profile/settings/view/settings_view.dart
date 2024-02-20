@@ -8,7 +8,7 @@ import '../../../../../product/widget/draw_clip.dart';
 
 class SettingsPage extends StatelessWidget {
   bool isDarkModeEnabled = false;
-  String selectedLanguage = 'Türkçe';
+  String selectedLanguage = 'English';
 
   SettingsPage({super.key});
 
@@ -23,7 +23,7 @@ class SettingsPage extends StatelessWidget {
           if (state is SettingsInitialState) {
             return Scaffold(
               appBar: AppBar(
-                title: const Text("Ayarlar"),
+                title: const Text("Settings"),
                 elevation: 0,
                 flexibleSpace: Container(
                   decoration: const BoxDecoration(
@@ -61,7 +61,7 @@ class SettingsPage extends StatelessWidget {
                         child: Column(
                           children: [
                             const Text(
-                              'Görünüm Ayarları',
+                              'Appearance Settings',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -76,7 +76,7 @@ class SettingsPage extends StatelessWidget {
                               padding: const EdgeInsets.all(12.0),
                               child: ListTile(
                                 title: Text(
-                                  isDarkModeEnabled ? 'Açık Mod' : 'Koyu Mod',
+                                  isDarkModeEnabled ? 'Light Mod' : 'Dark Mod',
                                   style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.bold,
@@ -98,7 +98,7 @@ class SettingsPage extends StatelessWidget {
                             ),
                             const SizedBox(height: 16.0),
                             const Text(
-                              'Dil Ayarları',
+                              'Language Settings',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -116,8 +116,8 @@ class SettingsPage extends StatelessWidget {
                                 value: selectedLanguage,
                                 onChanged: (String? newValue) {},
                                 items: <String>[
-                                  'Türkçe',
-                                  'İngilizceee'
+                                  'Turkish',
+                                  'English'
                                 ].map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
@@ -143,7 +143,7 @@ class SettingsPage extends StatelessWidget {
                     CircularProgressIndicator(color: ColorConst.primaryColor));
           } else {
             return const Center(
-              child: Text("Bloc Hata"),
+              child: Text("Bloc Error"),
             );
           }
         },

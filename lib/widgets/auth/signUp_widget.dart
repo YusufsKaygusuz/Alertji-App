@@ -2,15 +2,15 @@ import 'package:alertji_app/core/constants/color_constant.dart';
 import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
 import 'package:flutter/material.dart';
 
-class SignUpWidget extends StatelessWidget{
+class SignUpWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         const Text(
-          "Hesabınız yok mu? ",
+          "Don't have an account?",
           style: TextStyle(
-              fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 14),
+              fontWeight: FontWeight.bold, color: Colors.black54, fontSize: 12),
         ),
         InkWell(
           onTap: () {
@@ -19,16 +19,18 @@ class SignUpWidget extends StatelessWidget{
               MaterialPageRoute(builder: (context) => const RegisterPage()),
             );
           },
-          child: const Text(
-            "Kayıt ol",
-            style: TextStyle(
-                color: ColorConst.primaryColor,
-                fontWeight: FontWeight.bold,
-                fontSize: 14),
+          child: const Padding(
+            padding: EdgeInsets.only(left: 2.0),
+            child: Text(
+              "Register",
+              style: TextStyle(
+                  color: ColorConst.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14),
+            ),
           ),
         ),
       ],
     );
   }
-
 }

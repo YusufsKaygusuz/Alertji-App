@@ -20,13 +20,12 @@ class VerifyEmailPage extends StatelessWidget {
           body: BlocConsumer<VerifyEmailCubit, VerifyEmailState>(
         listener: (context, state) {
           if (state is VerifyEmailInitialState) {
-            if (state.isVerified == true && isProceed==true) {
-                isProceed=false;
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (context) => NavigationView()),
-                  (Route<dynamic> route) => false,
-                );
-             
+            if (state.isVerified == true && isProceed == true) {
+              isProceed = false;
+              Navigator.of(context).pushAndRemoveUntil(
+                MaterialPageRoute(builder: (context) => NavigationView()),
+                (Route<dynamic> route) => false,
+              );
             } else {
               // Navigator.push(
               //   context,
@@ -49,7 +48,7 @@ class VerifyEmailPage extends StatelessWidget {
                       child: Column(
                         children: [
                           const Text(
-                            "E-mail doğrulama bağlantısı hesabınıza gönderilmiştir.",
+                            "The e-mail verification link has been sent to your account.",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 18,
@@ -69,7 +68,7 @@ class VerifyEmailPage extends StatelessWidget {
                                         .read<VerifyEmailCubit>()
                                         .sendEmailVerificationAgain();
                                   },
-                                  text: "Doğrulama Bağlantısını Tekrar Gönder",
+                                  text: "Resend Verification Link",
                                 ),
                                 const SizedBox(height: 12),
                                 GradientButton(
@@ -81,7 +80,7 @@ class VerifyEmailPage extends StatelessWidget {
                                       (Route<dynamic> route) => false,
                                     );
                                   },
-                                  text: "Geri Dön ve Çıkış Yap",
+                                  text: "Return and Sign Out",
                                 ),
                                 // GradientButton(
                                 //   onPressed: () {
@@ -115,7 +114,7 @@ class VerifyEmailPage extends StatelessWidget {
           // }
           else {
             return const Center(
-              child: Text("Yükleme Başarısız"),
+              child: Text("Installation Failed"),
             );
           }
         },

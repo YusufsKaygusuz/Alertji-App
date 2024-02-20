@@ -41,7 +41,7 @@ class ProfileView extends StatelessWidget {
                     (Route<dynamic> route) => false);
               },
             ),
-            title: const Text("Hesabım"),
+            title: const Text("My Account"),
             backgroundColor: Colors.green,
           ),
           body: BlocConsumer<ProfileCubit, ProfileState>(
@@ -70,7 +70,7 @@ class ProfileView extends StatelessWidget {
                   ),
                 );
               } else {
-                return const Center(child: Text("Yükleme Başarısız"));
+                return const Center(child: Text("Installation Failed"));
               }
             },
           )),

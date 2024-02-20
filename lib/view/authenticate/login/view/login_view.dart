@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
                               AppIconWidget(),
                               TextFieldWidget(_controllerEmail, "E-mail", false,
                                   Icons.email),
-                              TextFieldWidget(_controllerPassword, "Şifre",
+                              TextFieldWidget(_controllerPassword, "Password",
                                   true, Icons.lock),
                               Padding(
                                 padding:
@@ -89,7 +89,7 @@ class LoginPage extends StatelessWidget {
                                     );
                                   },
                                   child: const Text(
-                                    "Şifremi Unuttum",
+                                    "Forgot Password",
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontWeight: FontWeight.w500,
@@ -113,7 +113,7 @@ class LoginPage extends StatelessWidget {
                                             password: _controllerPassword.text,
                                           );
                                     },
-                                    text: 'Giriş Yap'),
+                                    text: 'Log In'),
                               ),
                               Padding(
                                 padding:
@@ -181,8 +181,7 @@ class LoginPage extends StatelessWidget {
                   );
                 });
                 return const Scaffold(
-                  body: Center(
-                      child: Text("Başarılı giriş, yönlendiriliyorsunuz...")),
+                  body: Center(child: Text("Success")),
                 );
               } else {
                 Future.delayed(const Duration(seconds: 3), () {
@@ -192,8 +191,7 @@ class LoginPage extends StatelessWidget {
                   );
                 });
                 return const Scaffold(
-                  body: Center(
-                      child: Text("Başarılı giriş, yönlendiriliyorsunuz...")),
+                  body: Center(child: Text("Success")),
                 );
               }
             } else {
@@ -204,9 +202,7 @@ class LoginPage extends StatelessWidget {
                 );
               });
               return const Scaffold(
-                body: Center(
-                    child: Text(
-                        "BAŞARISIZ giriş. Login sayfasına yönlendiriliyorsunuz.")),
+                body: Center(child: Text("Your e-mail or password is wrong.")),
               );
             }
           } else {
@@ -224,105 +220,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-// Scaffold(
-//       body: SizedBox(
-//         height: double.infinity,
-//         width: double.infinity,
-//         child: SingleChildScrollView(
-//           child: Column(children: [
-//             Stack(
-//               children: [
-//                 const CustomGradientClip(
-//                   isTopToBottom: true,
-//                 ),
-//                 Padding(
-//                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
-//                   child: Column(
-//                     children: [
-//                       AppIconWidget(),
-//                       TextFieldWidget(_controllerEmail, "E-mail", false,Icons.email),
-//                       TextFieldWidget(_controllerPassword, "Şifre", true,Icons.lock),
-//                       Padding(
-//                         padding: const EdgeInsets.only(left: 180.0, top: 5),
-//                         child: InkWell(
-//                           onTap: () {
-//                             Navigator.push(
-//                               context,
-//                               MaterialPageRoute(
-//                                   builder: (context) => ForgotPasswordPage()),
-//                             );
-//                           },
-//                           child: const Text(
-//                             "Şifremi Unuttum",
-//                             style: TextStyle(
-//                                 color: Colors.grey,
-//                                 fontWeight: FontWeight.w500,
-//                                 fontSize: 12,
-//                                 decoration: TextDecoration.underline),
-//                           ),
-//                         ),
-//                       ),
-//                       Padding(
-//                         padding: const EdgeInsets.all(8.0),
-//                         child: _errorMesage(),
-//                       ), // Hata mesajını görüntüler veya boş bir metin döndürür
-//                       Padding(
-//                         padding: const EdgeInsets.symmetric(
-//                           horizontal: 50.0,
-//                         ),
-//                         child: GradientButton(
-//                             onPressed: () async {
-//                               await signInWithEmailAndPassword();
-//                               if (FirebaseAuth.instance.currentUser != null) {
-//                                 _controllerEmail.clear();
-//                                 _controllerPassword.clear();
-//                                 if (Auth().verifyEmail() == true) {
-//                                   // ignore: use_build_context_synchronously
-//                                   Navigator.of(context).pushAndRemoveUntil(
-//                                       MaterialPageRoute(
-//                                           builder: (context) =>
-//                                               const NavigationView()),
-//                                       (Route<dynamic> route) => false);
-//                                 } else {
-//                                   // ignore: use_build_context_synchronously
-//                                   Navigator.of(context).pushAndRemoveUntil(
-//                                       MaterialPageRoute(
-//                                           builder: (context) =>
-//                                               const VerifyEmailPage()),
-//                                       (Route<dynamic> route) => false);
-//                                 }
-//                               }
-//                             },
-//                             text: 'Giriş Yap'),
-//                       ),
-//                       Padding(
-//                         padding: const EdgeInsets.only(left: 90.0, top: 8),
-//                         child: SignUpWidget(),
-//                       ),
-//                       const SizedBox(height: 20),
-//                       InkWell(
-//                         child: Container(
-//                           decoration: BoxDecoration(
-//                             border: Border.all(
-//                                 width: 3.5, color: ColorConst.primaryColor),
-//                             borderRadius: BorderRadius.circular(6),
-//                           ),
-//                           child: Image.network(
-//                             "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
-//                             height: 50,
-//                             width: 50,
-//                           ),
-//                         ),
-//                         onTap: () {
-//                         },
-//                       ),
-//                     ],
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ]),
-//         ),
-//       ),
-//     );

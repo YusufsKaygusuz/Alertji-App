@@ -31,7 +31,7 @@ class OnboardingView extends StatelessWidget {
                               MaterialPageRoute(
                                   builder: (context) => LoginPage()));
                         },
-                        buttonText: "Atla")),
+                        buttonText: "Skip")),
                 const SizedBox(height: 20),
                 Expanded(
                   child: PageView.builder(
@@ -50,9 +50,9 @@ class OnboardingView extends StatelessWidget {
                         onDone: () => Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  LoginPage())),
+                                builder: (context) => LoginPage())),
                         onSkip: () => onboardingCubit.nextPage(),
-                        isBottomSafeArea: false,
+                        //isBottomSafeArea: false,
                         globalBackgroundColor: Colors.white,
                         next: Container(
                           width: 40,

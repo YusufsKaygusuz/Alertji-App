@@ -17,14 +17,15 @@ class ForgotPasswordPage extends StatelessWidget {
       create: (context) => ForgotPasswordCubit(),
       child: Scaffold(
         appBar: LoginAppBar(
-          title: "Şifremi Unuttum",
+          title: "Forgot Password",
         ),
         body: BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
           listener: (context, state) {
             if (state is ForgotPasswordSuccess) {
               // Password sıfırlama işlemi başarılıysa yapılacak işlemler
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Şifre sıfırlama maili gönderildi.')),
+                SnackBar(
+                    content: Text('Password recovery mail has been sent.')),
               );
               Navigator.pop(context);
             } else if (state is ForgotPasswordFailure) {
@@ -52,12 +53,12 @@ class ForgotPasswordPage extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 0.0, left: 20),
                           child: Text(
-                            "Allertji App şifreni unuttuysan dert etme.",
+                            "If you forgot your Allertji App password, don't worry.",
                             style: TextStyle(color: Colors.green, fontSize: 16),
                           ),
                         ),
                         Text(
-                          "Sana yardımcı olacağız.",
+                          "We will help you.",
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                         _textFieldWidget(_emailController, "email"),
@@ -70,7 +71,7 @@ class ForgotPasswordPage extends StatelessWidget {
                                   .read<ForgotPasswordCubit>()
                                   .resetPassword(_emailController.text.trim());
                             },
-                            text: "Gönder",
+                            text: "Send",
                           ),
                         ),
                       ],

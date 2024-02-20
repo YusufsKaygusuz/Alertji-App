@@ -16,17 +16,17 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   List<Map<String, dynamic>> get profileMenuItems => [
         {
-          'text': 'Hesabım',
+          'text': 'My Account',
           'iconData': Icons.person,
           'route': () {},
         },
         {
-          'text': 'Bildirimler',
+          'text': 'Notifications',
           'iconData': Icons.notification_add,
           'route': () {},
         },
         {
-          'text': 'Ayarlar',
+          'text': 'Settings',
           'iconData': Icons.settings,
           'route': () {
             Navigator.of(context).pushAndRemoveUntil(
@@ -35,7 +35,7 @@ class _BodyState extends State<Body> {
           },
         },
         {
-          'text': 'Destek',
+          'text': 'Support',
           'iconData': Icons.help_center,
           'route': () {
             Navigator.of(context).pushAndRemoveUntil(
@@ -44,7 +44,7 @@ class _BodyState extends State<Body> {
           },
         },
         {
-          'text': 'Çıkış Yap',
+          'text': 'Log Out',
           'iconData': Icons.logout,
           'route': () {
             Auth().signOut();

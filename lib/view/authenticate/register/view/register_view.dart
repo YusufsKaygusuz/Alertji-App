@@ -112,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
             return Scaffold(
               appBar: AppBar(
                 elevation: 0,
-                title: const Text("Kayıt Ol"),
+                title: const Text("Register"),
                 flexibleSpace: Container(
                   decoration: const BoxDecoration(
                     gradient: LinearGradient(
@@ -146,12 +146,12 @@ class _RegisterPageState extends State<RegisterPage> {
                         child: Column(
                           children: [
                             Text(
-                              "Sağlıklı ve güvenli bir yaşam deneyimi için aramıza ",
+                              "Are you ready to join us for a healthy and  ",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16),
                             ),
                             Text(
-                              " katılmaya hazır mısın?",
+                              " safe life experience?",
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16),
                             ),
@@ -164,14 +164,15 @@ class _RegisterPageState extends State<RegisterPage> {
                           const SizedBox(
                             height: 150,
                           ),
-                          _textFieldWidget(_controllerName, "İsim", false,
+                          _textFieldWidget(_controllerName, "Name", false,
                               icon: Icons.person),
                           _textFieldWidget(_controllerEmail, "E-mail", false,
                               icon: Icons.mail),
-                          _textFieldWidget(_controllerPassword, "Şifre", true,
+                          _textFieldWidget(
+                              _controllerPassword, "Password", true,
                               icon: Icons.lock),
                           _textFieldWidget(
-                              _controllerCheckPassword, "Şifre Tekrarı", true,
+                              _controllerCheckPassword, "Password", true,
                               icon: Icons.lock),
                           _errorMesage(),
                           Padding(
@@ -181,12 +182,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                 onPressed: () async {
                                   if (_controllerName.text.isEmpty) {
                                     AlertDialog alertName = AlertDialog(
-                                      title: const Text("Hata"),
+                                      title: const Text("Error"),
                                       content: const Text(
-                                          "İsim alanı boş bırakılamaz"),
+                                          "Name field cannot be left blank"),
                                       actions: [
                                         TextButton(
-                                          child: const Text("Tamam"),
+                                          child: const Text("OK"),
                                           onPressed: () {
                                             Navigator.pop(context!);
                                           },
@@ -219,10 +220,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                       AlertDialog alertPassword = AlertDialog(
                                         title: const Text("Hata"),
                                         content: const Text(
-                                            "Girdiğiniz şifreler uyuşmuyor veya şifre alanı boş bırakılamaz"),
+                                            "The passwords you entered do not match or the password field cannot be left blank"),
                                         actions: [
                                           TextButton(
-                                            child: const Text("Tamam"),
+                                            child: const Text("OK"),
                                             onPressed: () {
                                               Navigator.pop(context!);
                                             },
@@ -237,7 +238,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                     }
                                   }
                                 },
-                                text: "Kayıt Ol"),
+                                text: "Register"),
                           ),
                         ]),
                       ),

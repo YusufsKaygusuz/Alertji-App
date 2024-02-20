@@ -69,7 +69,7 @@ class SupportPage extends StatelessWidget {
                   child: Column(
                     children: [
                       const Text(
-                        'Bize Ulaşın',
+                        'Contact Us',
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -78,17 +78,13 @@ class SupportPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16.0),
                       const Text(
-                        'Herhangi bir soru, öneri veya geri bildiriminiz mi var? Bize e-posta',
-                        style: TextStyle(fontSize: 18, color: Colors.white),
-                      ),
-                      const Text(
-                        'gönderin.',
+                        'Have any questions, suggestions or feedback? Email us.',
                         style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                       const SizedBox(height: 140.0),
                       GradientButton(
                         onPressed: _sendEmail,
-                        text: 'Bize Ulaşın',
+                        text: 'Contact Us',
                       ),
                     ],
                   ),
