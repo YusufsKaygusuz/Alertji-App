@@ -11,11 +11,12 @@ class Auth {
     required String password,
   }) async {
     try {
-    await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-    return true;
-  } catch (e) {
-    return false;
-  }
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<void> createUserWithEmailAndPassword({
@@ -30,15 +31,15 @@ class Auth {
     await _firebaseAuth.signOut();
   }
 
-  bool verifyEmail(){
-    User? user =FirebaseAuth.instance.currentUser;
-    if(!(user!.emailVerified))
-    {
+  bool verifyEmail() {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (!(user!.emailVerified)) {
       user.sendEmailVerification();
       return false;
-    }
-    else{
+    } else {
       return true;
     }
   }
+
+  signInWithGoogle({required String email, required String password}) {}
 }

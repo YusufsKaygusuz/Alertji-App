@@ -121,43 +121,43 @@ class LoginPage extends StatelessWidget {
                                 child: SignUpWidget(),
                               ),
                               const SizedBox(height: 20),
-                              InkWell(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 3.5,
-                                        color: ColorConst.primaryColor),
-                                    borderRadius: BorderRadius.circular(6),
-                                  ),
-                                  child: Image.network(
-                                    "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
-                                    height: 50,
-                                    width: 50,
-                                  ),
-                                ),
-                                onTap: () async {
-                                  AuthGoogle authGoogle = AuthGoogle();
-                                  try {
-                                    UserCredential? userCredential =
-                                        await authGoogle.signInWithGoogle();
-                                    if (userCredential != null) {
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                HomePageView()),
-                                      );
-                                    } else {
-                                      print("Google ile giriş yapılamadı.");
-                                      // Gerekli hata işlemlerini yapabilirsiniz
-                                    }
-                                  } catch (e) {
-                                    print(
-                                        "Google ile oturum açma başarısız oldu: $e");
-                                    // Hata durumunda yapılacak işlemler buraya gelebilir
-                                  }
-                                },
-                              ),
+                              // InkWell(
+                              //   child: Container(
+                              //     decoration: BoxDecoration(
+                              //       border: Border.all(
+                              //           width: 3.5,
+                              //           color: ColorConst.primaryColor),
+                              //       borderRadius: BorderRadius.circular(6),
+                              //     ),
+                              //     child: Image.network(
+                              //       "https://pbs.twimg.com/profile_images/1511043794937991169/3B5fpOw8_400x400.png",
+                              //       height: 50,
+                              //       width: 50,
+                              //     ),
+                              //   ),
+                              //   onTap: () async {
+                              //     AuthGoogle authGoogle = AuthGoogle();
+                              //     try {
+                              //       UserCredential? userCredential =
+                              //           await authGoogle.signInWithGoogle();
+                              //       if (userCredential != null) {
+                              //         Navigator.pushReplacement(
+                              //           context,
+                              //           MaterialPageRoute(
+                              //               builder: (context) =>
+                              //                   HomePageView()),
+                              //         );
+                              //       } else {
+                              //         print("Google ile giriş yapılamadı.");
+                              //         // Gerekli hata işlemlerini yapabilirsiniz
+                              //       }
+                              //     } catch (e) {
+                              //       print(
+                              //           "Google ile oturum açma başarısız oldu: $e");
+                              //       // Hata durumunda yapılacak işlemler buraya gelebilir
+                              //     }
+                              //   },
+                              // ),
                             ],
                           ),
                         ),

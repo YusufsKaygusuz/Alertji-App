@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:alertji_app/view/authenticate/forgotpassword/bloc/forgot_password_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../product/widget/draw_clip.dart';
 import '../../../../product/widget/login_appbar.dart';
 import '../../../../product/widget/login_button.dart';
 import '../bloc/forgot_password_cubit.dart';
+import '../bloc/forgot_password_state.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   final TextEditingController _emailController = TextEditingController();
@@ -14,10 +14,10 @@ class ForgotPasswordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: ((context) => ForgotPasswordCubit()),
+      create: (context) => ForgotPasswordCubit(),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text('Reset Password'),
+        appBar: LoginAppBar(
+          title: "Şifremi Unuttum",
         ),
         body: BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
           listener: (context, state) {
@@ -40,25 +40,41 @@ class ForgotPasswordPage extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             }
-            return Padding(
-              padding: EdgeInsets.all(20.0),
+            return Container(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  TextField(
-                    controller: _emailController,
-                    decoration: InputDecoration(labelText: 'Email'),
-                  ),
-                  SizedBox(height: 20.0),
-                  ElevatedButton(
-                    onPressed: () {
-                      final email = _emailController.text.trim();
-                      if (email.isNotEmpty) {
-                        // Cubit üzerinden password reset isteği gönder
-                        context.read<ForgotPasswordCubit>().resetPassword(email);
-                      }
-                    },
-                    child: Text('Şifreni Sıfırla'),
+                  SizedBox(height: 240, child: CustomGradientClip()),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 0.0, left: 20),
+                          child: Text(
+                            "Allertji App şifreni unuttuysan dert etme.",
+                            style: TextStyle(color: Colors.green, fontSize: 16),
+                          ),
+                        ),
+                        Text(
+                          "Sana yardımcı olacağız.",
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        _textFieldWidget(_emailController, "email"),
+                        SizedBox(height: 30),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                          child: GradientButton(
+                            onPressed: () {
+                              context
+                                  .read<ForgotPasswordCubit>()
+                                  .resetPassword(_emailController.text.trim());
+                            },
+                            text: "Gönder",
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -70,107 +86,25 @@ class ForgotPasswordPage extends StatelessWidget {
   }
 }
 
-
-
-
-
-
-
-
-// class ForgotPasswordPage extends StatelessWidget {
-//   final TextEditingController mailController = TextEditingController();
-//   Widget _textFieldWidget(TextEditingController controller, String hintTitle) {
-//     return Padding(
-//       padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 35),
-//       child: TextField(
-//         controller: controller,
-//         decoration: InputDecoration(
-//           hintText: hintTitle,
-//           hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 12),
-//           focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(20),
-//             borderSide:
-//                 BorderSide(color: Colors.greenAccent.shade400, width: 1.0),
-//           ),
-//           enabledBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(20),
-//             borderSide:
-//                 BorderSide(color: Colors.greenAccent.shade400, width: 1.0),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: const LoginAppBar(
-//         title: ("Şifremi Unuttum"),
-//       ),
-//       body: BlocProvider(
-//         create: (context) => ForgotPasswordCubit(),
-//         child: BlocBuilder<ForgotPasswordCubit, ForgotPasswordState>(
-//           builder: (context, state) {
-//             return SingleChildScrollView(
-//               child: Column(
-//                 children: [
-//                   Stack(children: [
-//                     const SizedBox(height: 240, child: CustomGradientClip()),
-//                     Padding(
-//                       padding: const EdgeInsets.symmetric(horizontal: 30),
-//                       child: Column(
-//                         children: [
-//                           const Padding(
-//                             padding: EdgeInsets.only(top: 60.0, left: 20),
-//                             child: Text(
-//                               "Allertji App şifreni unuttuysan dert etme.",
-//                               style:
-//                                   TextStyle(color: Colors.white, fontSize: 18),
-//                             ),
-//                           ),
-//                           const Text(
-//                             "Sana yardımcı olacağız.",
-//                             style: TextStyle(color: Colors.white, fontSize: 18),
-//                           ),
-//                           const SizedBox(
-//                             height: 110,
-//                           ),
-//                           const Padding(
-//                             padding: EdgeInsets.all(20.0),
-//                             child: Text(
-//                               "E-mailinizi yazınız ve size şifrenizi sıfırlamanız için bir link gönderelim.",
-//                               style: TextStyle(fontSize: 16),
-//                               textAlign: TextAlign.center,
-//                             ),
-//                           ),
-//                           _textFieldWidget(mailController, "E-mail"),
-//                           Container(
-//                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-//                           ),
-//                           Padding(
-//                             padding:
-//                                 const EdgeInsets.symmetric(horizontal: 80.0),
-//                             child: GradientButton(
-//                               onPressed: () {
-//                                 context
-//                                     .read<ForgotPasswordCubit>()
-//                                     .resetPassword(mailController.text.trim()
-//                                         as BuildContext);
-//                               },
-//                               text: "Gönder",
-//                             ),
-//                           ),
-//                         ],
-//                       ),
-//                     ),
-//                   ]),
-//                 ],
-//               ),
-//             );
-//           },
-//         ),
-//       ),
-//     );
-//   }
-// }
+Widget _textFieldWidget(TextEditingController controller, String hintTitle) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 35),
+    child: TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        hintText: hintTitle,
+        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide:
+              BorderSide(color: Colors.greenAccent.shade400, width: 1.0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide:
+              BorderSide(color: Colors.greenAccent.shade400, width: 1.0),
+        ),
+      ),
+    ),
+  );
+}
