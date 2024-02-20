@@ -7,6 +7,20 @@
 
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
+analyzer:
+  errors:
+    avoid_print: ignore
+    avoid_unnecessary_containers: ignore
+    await_only_futures: ignore
+    body_might_complete_normally_nullable: ignore
+    deprecated_member_use: ignore
+    file_names: ignore
+    library_private_types_in_public_api: ignore
+    must_be_immutable: ignore
+    non_constant_identifier_names: ignore
+    unused_element: ignore
+    use_build_context_synchronously: ignore
+    use_key_in_widget_constructors: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

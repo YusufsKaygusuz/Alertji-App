@@ -16,7 +16,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('QR Kod Tarayıcı'),
+        title: const Text('QR Kod Tarayıcı'),
       ),
       body: Column(
         children: <Widget>[
@@ -33,29 +33,27 @@ class _QRScannerPageState extends State<QRScannerPage> {
   }
 
   void _onQRViewCreated(QRViewController controller) {
-  this.controller = controller;
-  controller.scannedDataStream.listen((scanData) {
-    // Okunan QR kodunu alın
-    String? scannedUrl = scanData.code;
+    this.controller = controller;
+    controller.scannedDataStream.listen((scanData) {
+      // Okunan QR kodunu alın
+      String? scannedUrl = scanData.code;
 
-    // Alınan URL'yi kontrol edin
-    if (scannedUrl!.startsWith('http://') || scannedUrl!.startsWith('https://')) {
-      // Eğer URL bir web sitesini işaret ediyorsa, web tarayıcısını açın
-      _launchURL(scannedUrl);
-    }
-  });
-}
-
-_launchURL(String url) async {
-  try {
-    await launch(url);
-  } catch (e) {
-    throw 'Could not launch $url: $e';
+      // Alınan URL'yi kontrol edin
+      if (scannedUrl!.startsWith('http://') ||
+          scannedUrl.startsWith('https://')) {
+        // Eğer URL bir web sitesini işaret ediyorsa, web tarayıcısını açın
+        _launchURL(scannedUrl);
+      }
+    });
   }
-}
 
-
-  
+  _launchURL(String url) async {
+    try {
+      await launch(url);
+    } catch (e) {
+      throw 'Could not launch $url: $e';
+    }
+  }
 
   @override
   void dispose() {

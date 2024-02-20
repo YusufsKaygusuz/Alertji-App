@@ -3,6 +3,8 @@ import 'package:alertji_app/view/authenticate/register/view/register_view.dart';
 import 'package:flutter/material.dart';
 
 class SignUpWidget extends StatelessWidget {
+  const SignUpWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(

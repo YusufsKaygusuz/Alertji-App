@@ -20,14 +20,15 @@ class HomePageView extends StatelessWidget {
       create: (context) => HomePageCubit(),
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-         backgroundColor: ColorConst.primaryColor,
+          backgroundColor: ColorConst.primaryColor,
           onPressed: () {
             Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => QRScannerPage()),
-    );
+              context,
+              MaterialPageRoute(builder: (context) => QRScannerPage()),
+            );
           },
-          child: Icon(Icons.qr_code_scanner_rounded), // FAB içeriği, genellikle bir ikon olur
+          child: const Icon(Icons
+              .qr_code_scanner_rounded), // FAB içeriği, genellikle bir ikon olur
         ),
         body: BlocConsumer<HomePageCubit, HomePageState>(
           listener: ((context, state) {}),

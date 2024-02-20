@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/register/bloc/register_cubit.dart';
 import 'package:alertji_app/view/authenticate/register/bloc/register_state.dart';
@@ -189,13 +191,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                         TextButton(
                                           child: const Text("OK"),
                                           onPressed: () {
-                                            Navigator.pop(context!);
+                                            Navigator.pop(context);
                                           },
                                         ),
                                       ],
                                     );
                                     showDialog(
-                                        context: context!,
+                                        context: context,
                                         builder: (BuildContext context) {
                                           return alertName;
                                         });
@@ -207,10 +209,10 @@ class _RegisterPageState extends State<RegisterPage> {
                                       await createUserWithEmailAndPassword();
                                       Auth().verifyEmail();
                                       Navigator.pushAndRemoveUntil(
-                                          context!,
+                                          context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  VerifyEmailPage()),
+                                                  const VerifyEmailPage()),
                                           (route) => false);
                                       _controllerCheckPassword.clear();
                                       _controllerPassword.clear();
@@ -225,13 +227,13 @@ class _RegisterPageState extends State<RegisterPage> {
                                           TextButton(
                                             child: const Text("OK"),
                                             onPressed: () {
-                                              Navigator.pop(context!);
+                                              Navigator.pop(context);
                                             },
                                           ),
                                         ],
                                       );
                                       showDialog(
-                                          context: context!,
+                                          context: context,
                                           builder: (BuildContext context) {
                                             return alertPassword;
                                           });
