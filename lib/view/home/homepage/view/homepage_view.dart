@@ -50,7 +50,7 @@ class HomePageView extends StatelessWidget {
                     text: 'Welcome, ${state.userName}',
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25, vertical: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 25),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

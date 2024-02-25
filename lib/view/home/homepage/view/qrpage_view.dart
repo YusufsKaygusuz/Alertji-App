@@ -1,6 +1,6 @@
+import 'package:alertji_app/view/home/homepage/view/webview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class QRScannerPage extends StatefulWidget {
   @override
@@ -16,7 +16,7 @@ class _QRScannerPageState extends State<QRScannerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('QR Kod Tarayıcı'),
+        title: const Text('Allertji App'),
       ),
       body: Column(
         children: <Widget>[
@@ -42,22 +42,12 @@ class _QRScannerPageState extends State<QRScannerPage> {
       if (scannedUrl!.startsWith('http://') ||
           scannedUrl.startsWith('https://')) {
         // Eğer URL bir web sitesini işaret ediyorsa, web tarayıcısını açın
-        _launchURL(scannedUrl);
+
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (context) => WebviewPreview(url: scannedUrl)),
+            (Route<dynamic> route) => false);
       }
     });
-  }
-
-  _launchURL(String url) async {
-    try {
-      await launch(url);
-    } catch (e) {
-      throw 'Could not launch $url: $e';
-    }
-  }
-
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
   }
 }

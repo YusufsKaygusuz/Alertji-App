@@ -6,14 +6,11 @@ import 'package:alertji_app/product/widget/login_button.dart';
 import 'package:alertji_app/view/authenticate/forgotpassword/view/forgot_password_view.dart';
 import 'package:alertji_app/view/authenticate/login/bloc/login_cubit.dart';
 import 'package:alertji_app/view/authenticate/login/bloc/login_state.dart';
-//import 'package:alertji_app/view/authenticate/login/service/auth_google.dart';
 import 'package:alertji_app/view/authenticate/verifyEmail/view/verify_email.dart';
-//import 'package:alertji_app/view/home/homepage/view/homepage_view.dart';
 import 'package:alertji_app/view/home/navigationpage/view/navigation_view.dart';
 import 'package:alertji_app/widgets/auth/appIcon_widget.dart';
 import 'package:alertji_app/widgets/auth/signUp_widget.dart';
 import 'package:alertji_app/widgets/auth/textField_widget.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../service/auth.dart';
@@ -68,7 +65,7 @@ class LoginPage extends StatelessWidget {
                           isTopToBottom: true,
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Column(
                             children: [
                               const AppIconWidget(),
@@ -99,7 +96,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(1.0),
                                 child: _errorMesage(),
                               ), // Hata mesajını görüntüler veya boş bir metin döndürür
                               Padding(
@@ -173,17 +170,17 @@ class LoginPage extends StatelessWidget {
           } else if (state is LoginCompletedState) {
             if (state.isLoggedin == true) {
               if (Auth().verifyEmail() == true) {
-                Future.delayed(const Duration(seconds: 3), () {
+                Future.delayed(const Duration(milliseconds: 400), () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => NavigationView()),
                   );
                 });
                 return const Scaffold(
-                  body: Center(child: Text("Success")),
+                  body: Center(child: Text("")),
                 );
               } else {
-                Future.delayed(const Duration(seconds: 3), () {
+                Future.delayed(const Duration(milliseconds: 400), () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -191,11 +188,11 @@ class LoginPage extends StatelessWidget {
                   );
                 });
                 return const Scaffold(
-                  body: Center(child: Text("Success")),
+                  body: Center(child: Text("")),
                 );
               }
             } else {
-              Future.delayed(const Duration(seconds: 3), () {
+              Future.delayed(const Duration(milliseconds: 400), () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()),

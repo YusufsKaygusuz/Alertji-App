@@ -2,8 +2,6 @@
 
 import 'package:alertji_app/view/authenticate/login/bloc/login_state.dart';
 import 'package:alertji_app/view/authenticate/login/service/auth.dart';
-//import 'package:alertji_app/view/authenticate/login/service/auth_google.dart';
-//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginCubit extends Cubit<LoginState> {

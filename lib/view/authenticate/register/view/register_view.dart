@@ -202,7 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                           return alertName;
                                         });
                                   } else {
-                                    if (await Auth().validatePassword(
+                                    if (Auth().validatePassword(
                                             _controllerPassword.text,
                                             _controllerCheckPassword.text) ==
                                         true) {
